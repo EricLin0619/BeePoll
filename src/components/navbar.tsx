@@ -1,6 +1,7 @@
 import { ConnectKitButton } from "connectkit"
 import KeplrWallet from "./keplrWallet"
 import { useRouter } from "next/router"
+import Login from "./login"
 
 export default function Navbar() {
   const router = useRouter()
@@ -15,6 +16,7 @@ export default function Navbar() {
       <div className="navbar-end mr-5">
         <div>
           <ConnectKitButton />
+          <Login/>
         </div>
       </div>
     </div>

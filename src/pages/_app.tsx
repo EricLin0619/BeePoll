@@ -7,17 +7,19 @@ import { client } from '../wagmi'
 import { AppProps } from 'next/app'
 import NextHead from 'next/head'
 import { GrazProvider, mainnetChains } from "graz";
+import { SessionProvider } from 'next-auth/react'
 
 
 function App({Component, pageProps}: AppProps) {
 
   return (
+    <SessionProvider session={pageProps.session}>
       <WagmiConfig client={client}>
         <ConnectKitProvider>
         <GrazProvider>
           <NextHead>
-            <title>Horcross</title>
-            <link rel="icon" href="./favicon.ico" />
+            <title>BeePoll</title>
+            <link rel="icon" href="./bee.png"/>
           </NextHead>
           <div className='min-h-screen flex flex-col'>
             <Navbar />
@@ -27,6 +29,7 @@ function App({Component, pageProps}: AppProps) {
           </GrazProvider>
         </ConnectKitProvider>
       </WagmiConfig>
+    </SessionProvider>
     )
 }
 export default App
