@@ -1,9 +1,11 @@
 import {} from "next/router";
+import NoCard from "../components/noCard";
+import YesCard from "../components/yesCard";
 import Countdown from "../components/countdown";
 export default function Page() {
   return (
-    <div className="flex justify-center">
-      <div className="card p-4 w-3/5 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-8 text-[#2E1503] ">
+    <div className="flex justify-center mt-10">
+      <div className="card p-4 w-3/5 h-1/2 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] text-[#2E1503] ">
         <div className="card-body">
           <h2 className="card-title text-3xl mb-6">Vote #161</h2>
           <div className="grid grid-cols-2 gap-4 mb-4">
@@ -51,6 +53,10 @@ export default function Page() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <YesCard/>
+        <NoCard/>
       </div>
     </div>
   );

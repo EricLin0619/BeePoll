@@ -13,22 +13,22 @@ export default function ProposalCard() {
           <h2 className="card-title">Vote #161</h2>
           <SmallCountdown />
         </div>
-        <p className="text-left text-[#2E1503]">We are using cookies for no reason.We are using cookies for no reason.</p>
+        <p className="text-left text-[#2E1503]">We are using cookies for no reason. We are using cookies for no reason.</p>
         <div className="flex justify-between">
-          <p className="text-xs text-left">Yes</p>
-          <p className="text-xs text-right">50%</p>
+          <p className="text-xs text-left font-bold">Yes</p>
+          <p className="text-xs text-right font-bold">50%</p>
         </div>
         <progress
-          className="progress progress-success w-56"
+          className="progress progress-success w-auto"
           value={50}
           max="100"
         ></progress>
         <div className="flex justify-between">
-          <p className="text-xs text-left">No</p>
-          <p className="text-xs text-right">10%</p>
+          <p className="text-xs text-left font-bold">No</p>
+          <p className="text-xs text-right font-bold">10%</p>
         </div>
         <progress
-          className="progress progress-error w-56 text-[#FF5E6C]"
+          className="progress progress-error w-auto text-[#FF5E6C]"
           value={10}
           max="100"
         ></progress>
