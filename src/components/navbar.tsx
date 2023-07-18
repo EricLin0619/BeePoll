@@ -16,7 +16,7 @@ export default function Navbar() {
       <div className="navbar-end mr-5">
         <div>
           <ConnectKitButton />
-          <Login/>
+          {/* <Login/> */}
         </div>
       </div>
     </div>

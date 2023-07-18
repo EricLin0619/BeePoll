@@ -5,7 +5,7 @@ export default function ProposalCard() {
     router.push("/card");
   }
   return (
-    <div className="card w-80 p-4 bg-[#fff5d7] border-[#2E1503] border-solid border shadow-md mt-3 cursor-pointer text-[#2E1503] " onClick={handleClick}>
+    <div className="card w-80 p-4 bg-[#fff5d7] shadow-md mt-3 cursor-pointer text-[#2E1503] " onClick={handleClick}>
       <div className="card-body">
         <div className="flex justify-center">
           <h2 className="card-title text-center">Cookies!</h2>

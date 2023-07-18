@@ -21,7 +21,7 @@ function App({Component, pageProps}: AppProps) {
             <title>BeePoll</title>
             <link rel="icon" href="./bee.png"/>
           </NextHead>
-          <div className='min-h-screen flex flex-col bg-[#fff5d7]'>
+          <div className='min-h-screen flex flex-col'>
             <Navbar />
               <Component { ...pageProps}></Component>
             <Footer/>

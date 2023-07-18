@@ -1,9 +1,12 @@
-import ProposalCard from "../components/proposalCard";
 import Cards from "../components/cards";
+import Credential from "../components/credential";
 
 function Page() {
   return (
-    <Cards/>
+    <div>
+      <Cards/>
+      <Credential/>
+    </div>
   )
 }
 
