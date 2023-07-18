@@ -1,7 +1,7 @@
 import ProposalCard from "./proposalCard"
 export default function Cards() {
   return (
-    <div className="mb-10 grid grid-cols-4 justify-items-center mt-6">
+    <div className="mb-10 grid grid-cols-4 justify-items-center mt-12">
       <ProposalCard/>
       <ProposalCard/>
       <ProposalCard/>
