@@ -1,32 +1,35 @@
 import { useRouter } from "next/router";
+import SmallCountdown from "./smallCountdown";
+
 export default function ProposalCard() {
   const router = useRouter();
   function handleClick() {
     router.push("/card");
   }
   return (
-    <div className="card w-80 p-4 bg-[#fff5d7] shadow-md mt-3 cursor-pointer text-[#2E1503] " onClick={handleClick}>
+    <div className="card w-[350px] p-4 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-3 cursor-pointer text-[#2E1503] " onClick={handleClick}>
       <div className="card-body">
-        <div className="flex justify-center">
-          <h2 className="card-title text-center">Cookies!</h2>
+        <div className="flex items-center">
+          <h2 className="card-title">Vote #161</h2>
+          <SmallCountdown />
         </div>
         <p className="text-left text-[#2E1503]">We are using cookies for no reason.We are using cookies for no reason.</p>
         <div className="flex justify-between">
           <p className="text-xs text-left">Yes</p>
-          <p className="text-xs text-right">10%</p>
+          <p className="text-xs text-right">50%</p>
         </div>
         <progress
-          className="progress progress-error w-56"
-          value={10}
+          className="progress progress-success w-56"
+          value={50}
           max="100"
         ></progress>
         <div className="flex justify-between">
           <p className="text-xs text-left">No</p>
-          <p className="text-xs text-right">50%</p>
+          <p className="text-xs text-right">10%</p>
         </div>
         <progress
           className="progress progress-error w-56 text-[#FF5E6C]"
-          value={50}
+          value={10}
           max="100"
         ></progress>
         <div className="flex justify-between mt-4">

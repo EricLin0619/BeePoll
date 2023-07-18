@@ -3,7 +3,7 @@ import Countdown from "../components/countdown";
 export default function Page() {
   return (
     <div className="flex justify-center">
-      <div className="card p-4 w-3/5 bg-[#fff5d7] border-[#2E1503] border-solid border-2 shadow-md mt-3 text-[#2E1503] ">
+      <div className="card p-4 w-3/5 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-8 text-[#2E1503] ">
         <div className="card-body">
           <h2 className="card-title text-3xl mb-6">Vote #161</h2>
           <div className="grid grid-cols-2 gap-4 mb-4">
@@ -25,27 +25,31 @@ export default function Page() {
           </div>
           <div>
             <p className="font-bold mb-3">VOTES</p>
-            <div className="flex items-center">
-              <div className=" rounded-full bg-success w-2 h-2 mr-2"></div>
-              <span className="mr-4">Yes 50%</span>
-              <progress
-                className="progress progress-success w-56"
-                value={50}
-                max="100"
-              ></progress>
+
+            <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <div className="flex items-center">
+                        <div className=" rounded-full bg-success w-2 h-2 mr-2"></div>
+                        <span className="mr-4">Yes 50%</span>
+                        <progress
+                        className="progress progress-success w-56"
+                        value={50}
+                        max="100"
+                        ></progress>
+                    </div>
+                    <div className="flex items-center">
+                        <div className=" rounded-full bg-error w-2 h-2 mr-2"></div>
+                        <span className="mr-4">No 10%</span>
+                        <progress
+                        className="progress progress-error w-56"
+                        value={10}
+                        max="100"
+                        ></progress>
+                    </div>
+                </div>
+                <Countdown />
             </div>
-            <div className="flex items-center">
-              <div className=" rounded-full bg-error w-2 h-2 mr-2"></div>
-              <span className="mr-4">No 10%</span>
-              <progress
-                className="progress progress-error w-56"
-                value={10}
-                max="100"
-              ></progress>
-            </div>
-            <p></p>
           </div>
-          <Countdown />
         </div>
       </div>
     </div>
