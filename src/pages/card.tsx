@@ -21,7 +21,7 @@ export default function Page() {
             <div>
               <p className="font-bold mb-3">CREATED BY</p>
               <div className="flex items-center">
-                <img src="creeper.png" className="w-8 h-8 rounded-l-lg" />
+                <img src="./creeper.png" className="w-8 h-8 rounded-l-lg" alt="creeper"/>
                 <span className="bg-[#f9e547] text-[#65676a] font-bold rounded-r-lg pt-1 px-2 h-8">
                   0xf73a…3249{" "}
                 </span>
@@ -33,19 +33,19 @@ export default function Page() {
               <p className="font-bold mb-3">VOTES</p>
               <div className="flex items-center">
                 <div className=" rounded-full bg-success w-2 h-2 mr-2"></div>
-                <span className="mr-4">Yes 50%</span>
+                <span className="mr-4">Yes 60%</span>
                 <progress
                   className="progress progress-success w-56"
-                  value={50}
+                  value={60}
                   max="100"
                 ></progress>
               </div>
               <div className="flex items-center">
                 <div className=" rounded-full bg-error w-2 h-2 mr-2"></div>
-                <span className="mr-4">No 10%</span>
+                <span className="mr-4">No 40%</span>
                 <progress
                   className="progress progress-error w-56"
-                  value={10}
+                  value={40}
                   max="100"
                 ></progress>
               </div>

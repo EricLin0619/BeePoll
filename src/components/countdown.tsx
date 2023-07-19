@@ -33,25 +33,26 @@ export default function Countdown() {
     <div className="flex gap-5">
       <div>
         <span className="countdown font-mono text-4xl">
-          <span style={{ "--value": days }}></span>
+          {/* <span style={{ "--value": days }}></span> */}
+          <span style={{ "--value": days } as any} ></span>
         </span>
         days
       </div>
       <div>
         <span className="countdown font-mono text-4xl">
-          <span style={{ "--value": hours }}></span>
+          <span style={{ "--value": hours } as any}></span>
         </span>
         hours
       </div>
       <div>
         <span className="countdown font-mono text-4xl">
-          <span style={{ "--value": mins }}></span>
+          <span style={{ "--value": mins } as any}></span>
         </span>
         min
       </div>
       <div>
         <span className="countdown font-mono text-4xl">
-          <span style={{ "--value": secs }}></span>
+          <span style={{ "--value": secs } as any}></span>
         </span>
         sec
       </div>

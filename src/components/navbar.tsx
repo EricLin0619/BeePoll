@@ -2,6 +2,7 @@ import { ConnectKitButton } from "connectkit"
 import KeplrWallet from "./keplrWallet"
 import { useRouter } from "next/router"
 import Login from "./login"
+import Darkmode from "./darkmode"
 
 export default function Navbar() {
   const router = useRouter()
@@ -14,7 +15,8 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
       </div>
       <div className="navbar-end mr-5">
-        <div>
+        <div className="flex items-center">
+          <Darkmode/>
           <ConnectKitButton/>
           {/* <Login/> */}
         </div>

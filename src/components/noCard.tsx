@@ -4,7 +4,7 @@ export default function NoCard() {
       <div className="card-body">
         <h2 className="card-title mb-2">No</h2>
         <div className="flex items-center">
-          <img src="ethereum.png" className="w-8 h-8 rounded-l-lg mr-3" />
+          <img src="ethereum.png" className="w-8 h-8 rounded-l-lg mr-3" alt="goerli" />
           <div>
             <div className="flex justify-between">
               <p className="text-xs text-left font-bold">Goerli</p>
@@ -19,10 +19,10 @@ export default function NoCard() {
         </div>
 
         <div className="flex items-center">
-          <img src="polygon.png" className="w-8 h-8 rounded-l-lg mr-3" />
+          <img src="polygon.png" className="w-8 h-8 rounded-l-lg mr-3" alt="mumbai"/>
           <div>
             <div className="flex justify-between">
-              <p className="text-xs text-left font-bold">Goerli</p>
+              <p className="text-xs text-left font-bold">Mumbai</p>
               <p className="text-xs text-right font-bold">65%</p>
             </div>
             <progress
