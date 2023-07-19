@@ -1,11 +1,11 @@
 import Cards from "../components/proposals";
-import Credential from "../components/credential";
+import Identity from "../components/identity";
 
 function Page() {
   return (
     <div>
+      <Identity/>
       <Cards/>
-      <Credential/>
     </div>
   )
 }
