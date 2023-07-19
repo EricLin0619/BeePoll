@@ -1,8 +1,6 @@
 import { ConnectKitButton } from "connectkit"
-import KeplrWallet from "./keplrWallet"
 import { useRouter } from "next/router"
-import Login from "./login"
-import Darkmode from "./darkmode"
+import Darkmode from "../darkmode"
 
 export default function Navbar() {
   const router = useRouter()

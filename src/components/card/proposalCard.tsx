@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import SmallCountdown from "./smallCountdown";
+import SmallCountdown from "../countdown/smallCountdown";
 
 export default function ProposalCard() {
   const router = useRouter();

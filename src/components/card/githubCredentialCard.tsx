@@ -1,6 +1,6 @@
 import { FaGithub } from 'react-icons/fa';
 
-export default function GithubCredential() {
+export default function GithubCredentialCard() {
   return (
     <div className='cursor-pointer bg-gradient-to-r  shadow-[0_3px_10px_rgb(0,0,0,0.2)] from-[#42275a] to-[#734b6d] rounded-xl p-4 w-[350px] mb-8'>
       <div className='flex items-center mb-2'>

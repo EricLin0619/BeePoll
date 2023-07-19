@@ -1,5 +1,5 @@
 import { BiIdCard } from "react-icons/bi";
-import GithubCredential from "./githubCredential";
+import GithubCredentialCard from "./card/githubCredentialCard";
 export default function Credential() {
   return (
     <div className="mb-8">
@@ -13,10 +13,10 @@ export default function Credential() {
           <button className="btn btn-outline btn-warning mr-8 mb-8">Get Credential</button>
         </div>
         <div className="grid grid-cols-4 justify-items-center">
-          <GithubCredential/>
-          <GithubCredential/>
-          <GithubCredential/>
-          <GithubCredential/>
+          <GithubCredentialCard/>
+          <GithubCredentialCard/>
+          <GithubCredentialCard/>
+          <GithubCredentialCard/>
         </div>
         
       </div>

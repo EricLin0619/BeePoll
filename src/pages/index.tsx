@@ -1,4 +1,4 @@
-import Cards from "../components/cards";
+import Cards from "../components/proposals";
 import Credential from "../components/credential";
 
 function Page() {
