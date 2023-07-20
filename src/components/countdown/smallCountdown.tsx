@@ -35,9 +35,9 @@ export default function SmallCountdown() {
   return (
     <span className="countdown font-mono text-base ml-auto">
       <span style={{ "--value": days } as any}></span>d
-      <span style={{ "--value": hours } as any}></span>h
-      <span style={{ "--value": mins } as any}></span>m
-      <span style={{ "--value": secs } as any}></span>s
+      <span style={{ "--value": hours } as any} className="ml-1"></span>h
+      <span style={{ "--value": mins } as any} className="ml-1"></span>m
+      <span style={{ "--value": secs } as any} className="ml-1"></span>s
     </span>
   );
 }
