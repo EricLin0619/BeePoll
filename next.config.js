@@ -10,7 +10,7 @@ const nextConfig = {
     experimental: {
         appDir: false,
     },
-    basePath: isProd ? '/frontend' : '',
+    basePath: isProd ? '/BeePoll' : '',
     assetPrefix: './',
     webpack: function (config, options) {
         if (!options.isServer) {
