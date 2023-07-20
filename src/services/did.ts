@@ -1,11 +1,24 @@
-import axios from 'axios';
-const { HypersignDID } = require("hs-ssi-sdk");
+import axios, { AxiosResponse } from 'axios';
 
-export const createDid = async (address: `0x${string}` | undefined) => {
+export const getAccessToken = async () => {
+    const url = 'https://api.entity.hypersign.id/api/v1/app/oauth';
+    const headers = {
+        'accept': 'application/json',
+        'X-Api-Secret-Key': process.env.NEXT_PUBLIC_API_SECRET_KEY,
+    };
+
+    try {
+        const response = await axios.post(url, {}, { headers });
+        console.log("getAccessToken response:", response.data.access_token);
+        return response.data.access_token as string;
+    } catch (error: any) {
+        console.error('Error occurred:', error.message);
+    }
+}
+
+export const createDid = async (address: `0x${string}` | undefined, token: string | undefined) => {
     const url = 'https://api.entity.hypersign.id/api/v1/did/create';
 
-    const token = process.env.NEXT_PUBLIC_SSI_ACCESS_TOKEN;
-    console.log("token", token)
     const headers = {
         'accept': 'application/json',
         'Authorization': `Bearer ${token}`,
@@ -30,7 +43,7 @@ export const createDid = async (address: `0x${string}` | undefined) => {
 
     try {
         const response = await axios.post(url, data, { headers });
-        console.log('API response:', JSON.stringify(response.data, null, 2));
+        console.log('createDid response:', JSON.stringify(response.data, null, 2));
 
 
         // Rename @context to context
@@ -48,12 +61,12 @@ export const createDid = async (address: `0x${string}` | undefined) => {
 };
 
 
-export const registerDID = async (didDocument: any, signature: any) => {
+export const registerDid = async (didDocument: any, signature: any, token: string | undefined) => {
     const url = 'https://api.entity.hypersign.id/api/v1/did/register';
 
     const headers = {
         'accept': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SSI_ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
     };
     const requestBody = {
@@ -69,17 +82,30 @@ export const registerDID = async (didDocument: any, signature: any) => {
         ],
     };
 
-    console.log("registerDID REQUEST", JSON.stringify(requestBody, null, 2))
-
-
     axios.post(url, requestBody, { headers })
         .then(response => {
-            console.log(response.data);
-            return response;
+            console.log("registerDid response:", response.data);
+            return response.data;
         })
         .catch(error => {
             console.error("did register error：", error);
             return error;
         });
 };
+
+export const resolveDid = async (did: string, token: string | undefined) => {
+    const url = `https://api.entity.hypersign.id/api/v1/did/resolve/${did}`;
+    const headers = {
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    };
+
+    try {
+        const response: AxiosResponse = await axios.get(url, { headers });
+        console.log("resolveDid response:", response.data);
+        return response.data;
+    } catch (error: any) {
+        console.error('Error occurred:', error.message);
+    }
+}
 
