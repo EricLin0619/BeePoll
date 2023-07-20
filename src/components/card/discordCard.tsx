@@ -1,6 +1,20 @@
 import { BiIdCard, BiCopy } from "react-icons/bi";
 import { FaDiscord, FaRegClock } from "react-icons/fa";
-export default function DiscordCard() {
+import { useState } from "react";
+
+export default function DiscordCard(props: any) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyClick = () => {
+    const textToCopy = "vc:hid:testnet:zGTu1XFubxPCkdi1GUNxNmSbqc57PzjZWbH4P18T1DrY"; // 更改為您想複製的文字，或從狀態或屬性中取得
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 1000); // 顯示 "Copied!" 文字 2 秒後恢復初始狀態
+    });
+  };
   return (
     <div className="ml-7 bg-gradient-to-r from-[#42275a] to-[#734b6d] card w-[350px] p-2 text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       <div className="card-body">
@@ -17,7 +31,15 @@ export default function DiscordCard() {
               </div>
               <div className="flex items-center text-[#cccccc]">
                 <p className="font-mono">vc:hid...ui6uC2</p>
-                <BiCopy className="w-5 h-auto ml-1 cursor-pointer" />
+                <BiCopy
+                  className={`w-5 h-auto ml-1 cursor-pointer ${
+                    copied ? "text-green-500" : ""
+                  }`}
+                  onClick={() => {
+                    props.handleCopyClick();
+                    handleCopyClick();
+                  }}
+                />
               </div>
             </div>
             <div>
