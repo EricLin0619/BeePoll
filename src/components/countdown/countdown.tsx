@@ -30,7 +30,7 @@ export default function Countdown() {
 
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 font-mono">
       <div>
         <span className="countdown font-mono text-4xl">
           {/* <span style={{ "--value": days }}></span> */}
