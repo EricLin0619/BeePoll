@@ -1,0 +1,42 @@
+{
+  "didDocument": {
+    "context": ["https://www.w3.org/ns/did/v1"],
+    "id": "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff",
+    "controller": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff"
+    ],
+    "alsoKnownAs": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff"
+    ],
+    "verificationMethod": [
+      {
+        "id": "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1",
+        "type": "EcdsaSecp256k1RecoveryMethod2020",
+        "controller": "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff",
+        "blockchainAccountId": "eip155:1:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff"
+      }
+    ],
+    "authentication": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1"
+    ],
+    "assertionMethod": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1"
+    ],
+    "keyAgreement": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1"
+    ],
+    "capabilityInvocation": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1"
+    ],
+    "capabilityDelegation": [
+      "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1"
+    ]
+  },
+  "signInfos": [
+    {
+      "verification_method_id": "did:hid:testnet:0xe28DC9e450119da1de25FEb26A83DD7Fd6E623ff#key-1",
+      "clientSpec": { "type": "eth-personalSign" },
+      "signature": "0x58c6e92a45974e085e00661a2d80756ad27feeb231d63fcc8c723e1eacb8fb7d54929ea2111cf1ec3d071ab9d066e2e47fd0d8e0036a0206425031171e6bda291b"
+    }
+  ]
+}
