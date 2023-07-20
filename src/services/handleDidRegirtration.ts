@@ -12,7 +12,8 @@ export const handleDidRegistration = async (
             const did = "did:hid:testnet:" + address;
             const res = await resolveDid(did, token);
 
-            if (res.didDocument.id !== undefined) {
+            if (res?.didDocument?.id !== undefined) {
+                console.log("DID already registered", res?.didDocument?.id)
                 setIsRegistered(true);
             } else {
                 const didDocument = await createDid(address, token);
