@@ -2,17 +2,28 @@ import { BiIdCard, BiWallet, BiCopy } from "react-icons/bi";
 import { useState } from "react";
 
 export default function PersonalDIDCard(props: any) {
-  const [copied, setCopied] = useState(false);
+  const [addressCopied, setAddressCopied] = useState(false);
+  const [didCopied, setDidCopied] = useState(false);
 
-  const handleCopyClick = () => {
+  const handleCopyAddress = () => {
     const textToCopy =
       "0x873cD9D89eC101593468289A2bF8F5FB06c83A2F"; // 更改為您想複製的文字，或從狀態或屬性中取得
 
     navigator.clipboard.writeText(textToCopy).then(() => {
-      setCopied(true);
+      setAddressCopied(true);
       setTimeout(() => {
-        setCopied(false);
-      }, 1000); // 顯示 "Copied!" 文字 2 秒後恢復初始狀態
+        setAddressCopied(false);
+      }, 1000); 
+    });
+  };
+
+  const handleCopyDID = () => {
+    const textToCopy = "0x873cD9D89eC101593468289A2bF8F5FB06c83A2F"
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setDidCopied(true);
+      setTimeout(() => {
+        setDidCopied(false);
+      }, 1000);
     });
   };
 
@@ -35,11 +46,11 @@ export default function PersonalDIDCard(props: any) {
                   <p className="font-mono dark:text-white">0xe28D ... E623ff</p>
                   <BiCopy
                     className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
-                      copied ? "text-green-500" : ""
+                      addressCopied ? "text-green-500" : ""
                     }`}
                     onClick={() => {
                       props.handleCopyClick();
-                      handleCopyClick();
+                      handleCopyAddress();
                     }}
                   />
                 </div>
@@ -52,10 +63,12 @@ export default function PersonalDIDCard(props: any) {
                 <div className="flex items-center">
                   <p className="font-mono dark:text-white">did:hi ... #key-1</p>
                   <BiCopy
-                    className={`text-black dark:text-white w-5 h-auto ml-1 cursor-pointer`}
+                    className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
+                      didCopied ? "text-green-500" : ""
+                    }`}
                     onClick={() => {
                       props.handleCopyClick();
-                      handleCopyClick();
+                      handleCopyDID();
                     }}
                   />
                 </div>
