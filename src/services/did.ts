@@ -4,7 +4,7 @@ export const getAccessToken = async () => {
     const url = 'https://api.entity.hypersign.id/api/v1/app/oauth';
     const headers = {
         'accept': 'application/json',
-        'X-Api-Secret-Key': process.env.NEXT_PUBLIC_API_SECRET_KEY,
+        'X-Api-Secret-Key': process.env.NEXT_PUBLIC_API_SECRET_KEY
     };
 
     try {
