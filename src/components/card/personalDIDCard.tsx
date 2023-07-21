@@ -22,7 +22,7 @@ export default function PersonalDIDCard(props: any) {
         <div className="card-body"> 
           <div className="flex items-center">
             <div className="flex flex-col items-center">
-              <img src="ethereum.png" className="w-16"></img>
+              <img src="https://github.com/EricLin0619/BeePoll/blob/gh-pages/ethereum.png?raw=true" className="w-16"></img>
               <span className="font-bold font-mono dark:text-white">Goerli</span>
             </div>
             <div className="ml-auto">

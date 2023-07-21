@@ -1,4 +1,4 @@
-import { FaGithub, FaDiscord } from 'react-icons/fa';
+import { FaGithub, FaDiscord } from "react-icons/fa";
 import Countdown from "../countdown/countdown";
 export default function DetailCard() {
   return (
@@ -22,7 +22,7 @@ export default function DetailCard() {
                 className="w-8 h-8 rounded-l-lg"
                 alt="creeper"
               />
-              <span className="dark:bg-slate-950 dark:text-white bg-[#f9e547] text-[#65676a] font-bold rounded-r-lg pt-1 px-2 h-8">
+              <span className="dark:bg-slate-900 dark:text-white bg-[#f9e547] text-[#65676a] font-bold rounded-r-lg pt-1 px-2 h-8">
                 0xf73a…3249{" "}
               </span>
             </div>
@@ -58,9 +58,23 @@ export default function DetailCard() {
             </div>
           </div>
         </div>
-        <div>
-          <p className="font-bold mb-3">TIME LEFT</p>
-          <Countdown />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="font-bold mb-3">TIME LEFT</p>
+            <Countdown />
+          </div>
+          <div className="flex flex-row-reverse mt-4">
+            <button
+              className="btn btn-outline btn-error w-20 border-2 mt-auto ml-4"
+            >
+              Deny
+            </button>
+            <button
+              className="btn btn-outline btn-success w-20 border-2 mt-auto"
+            >
+              Accept
+            </button>
+          </div>
         </div>
       </div>
     </div>
