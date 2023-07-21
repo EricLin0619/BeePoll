@@ -1,6 +1,6 @@
 name: Frontend deploy
 
-on: 
+on:
   push:
     branches:
       - main # The branch the action should deploy from.
@@ -15,7 +15,7 @@ jobs:
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: Installing my packages
         run: npm ci
