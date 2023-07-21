@@ -23,7 +23,7 @@ jobs:
       - name: Build my App
         run: npm run build
         env:
-          NEXT_PUBLIC_API_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_API_SECRET_KEY }}
+          NEXT_PUBLIC_API_SECRET_KEY: ${{ env.NEXT_PUBLIC_API_SECRET_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
