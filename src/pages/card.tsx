@@ -4,7 +4,7 @@ import YesCard from "../components/card/yesCard";
 
 export default function Page() {
   return (
-    <div className="flex justify-center my-10">
+    <div className="flex justify-center my-10 dark:bg-slate-800">
       <DetailCard/>
       <div>
         <YesCard />

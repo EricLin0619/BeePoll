@@ -12,7 +12,7 @@ function Page() {
     }, 2000);
   };
   return (
-    <div className="relative">
+    <div className="relative dark:bg-slate-800">
       {copied && <CopySuccess />}
       <Identity handleCopyClick={handleCopyClick} />
       <Proposals />
