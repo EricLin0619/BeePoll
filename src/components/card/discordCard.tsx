@@ -21,7 +21,7 @@ export default function DiscordCard(props: any) {
         <div className="flex items-center">
           <div className="flex flex-col items-center">
             <FaDiscord className="w-16 h-auto ml-auto mr-1" />
-            <span className="font-bold font-mono">Discord</span>
+            <span className="mt-2 font-bold font-mono">Discord</span>
           </div>
           <div className="ml-auto">
             <div className="mb-2">

@@ -2,11 +2,8 @@ import { signMessage } from "@wagmi/core";
 import { getAccessToken, resolveDid, createDid, registerDid } from "./did";
 
 export const handleDidRegistration = async (
-    isConnected: boolean,
-    isRegistered: boolean,
-    address: `0x${string}` | undefined,
-    setIsRegistered: (arg0: boolean) => void) => {
-    if (isConnected && !isRegistered) {
+    address: `0x${string}` | undefined )=> {
+    
         try {
             const token = await getAccessToken();
             const did = "did:hid:testnet:" + address;
@@ -14,7 +11,7 @@ export const handleDidRegistration = async (
 
             if (res?.didDocument?.id !== undefined) {
                 console.log("DID already registered", res?.didDocument?.id)
-                setIsRegistered(true);
+                return res?.didDocument?.id;
             } else {
                 const didDocument = await createDid(address, token);
                 const message = JSON.stringify(didDocument);
@@ -25,5 +22,5 @@ export const handleDidRegistration = async (
         } catch (error) {
             console.error("Error occurred during DID registration:", error);
         }
-    }
+    
 };
