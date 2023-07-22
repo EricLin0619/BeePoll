@@ -4,19 +4,12 @@ import Darkmode from "../darkmodeButton"
 import { useAccount } from "wagmi"
 import { createDid, getAccessToken, registerDid, resolveDid } from "../../services/did"
 import { signMessage } from "@wagmi/core";
-import React from "react"
-import { handleDidRegistration } from "../../services/handleDidRegirtration"
+import { useEffect, useState } from "react"
+
 
 
 export default function Navbar() {
   const router = useRouter()
-  const { address, isConnected } = useAccount()
-  const [isRegistered, setIsRegistered] = React.useState(false)
-
-  React.useEffect(() => {
-    handleDidRegistration(isConnected, isRegistered, address, setIsRegistered)
-  }, [address, isConnected])
-
 
   return (
     <div className="navbar bg-#fff5d7 dark:bg-slate-900 shadow-md p-0">

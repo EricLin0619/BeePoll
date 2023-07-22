@@ -22,7 +22,7 @@ export default function Github(props: any) {
         <div className="flex items-center">
           <div className="flex flex-col items-center">
             <FaGithub className="w-16 h-auto ml-auto mr-1" />
-            <span className="font-bold font-mono">Github</span>
+            <span className="mt-2 font-bold font-mono">Github</span>
           </div>
           <div className="ml-auto">
             <div className="mb-2">
