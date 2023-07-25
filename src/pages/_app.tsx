@@ -10,10 +10,10 @@ import { GrazProvider, mainnetChains } from "graz";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: session, ...pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class">
-      <SessionProvider session={pageProps.session}>
+    <SessionProvider session={session}>
+      <ThemeProvider attribute="class">
         <WagmiConfig client={client}>
           <ConnectKitProvider>
             <GrazProvider>
@@ -29,8 +29,8 @@ function App({ Component, pageProps }: AppProps) {
             </GrazProvider>
           </ConnectKitProvider>
         </WagmiConfig>
-      </SessionProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
 export default App;

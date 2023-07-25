@@ -4,12 +4,14 @@ import { useAccount } from "wagmi";
 import { useEffect } from "react";
 import { handleDidRegistration } from "../../services/handleDidRegirtration";
 import { formatAddress } from "../../services/utils";
+import { useTheme } from "next-themes";
 
 export default function PersonalDIDCard(props: any) {
   const [addressCopied, setAddressCopied] = useState(false);
   const [didCopied, setDidCopied] = useState(false);
   const [did, setDid] = useState("");
   const { address, isConnected } = useAccount();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (isConnected) {
@@ -20,9 +22,8 @@ export default function PersonalDIDCard(props: any) {
   }, [address, isConnected]);
 
   const handleCopyAddress = () => {
-    const textToCopy = did; // 更改為您想複製的文字，或從狀態或屬性中取得
-
-    navigator.clipboard.writeText(textToCopy).then(() => {
+    const textToCopy = address; // 更改為您想複製的文字，或從狀態或屬性中取得
+    navigator.clipboard.writeText(textToCopy as string).then(() => {
       setAddressCopied(true);
       setTimeout(() => {
         setAddressCopied(false);
@@ -31,7 +32,7 @@ export default function PersonalDIDCard(props: any) {
   };
 
   const handleCopyDID = () => {
-    const textToCopy = "0x873cD9D89eC101593468289A2bF8F5FB06c83A2F";
+    const textToCopy = did;
     navigator.clipboard.writeText(textToCopy).then(() => {
       setDidCopied(true);
       setTimeout(() => {
@@ -65,12 +66,12 @@ export default function PersonalDIDCard(props: any) {
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <p className="font-mono dark:text-white">
+                      <p className={`font-mono dark:text-white  ${addressCopied ? "text-green-500 dark:text-green-500" : ""}`}>
                         {formatAddress(address as string)}
                       </p>
                       <BiCopy
                         className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
-                          addressCopied ? "text-green-500" : ""
+                          addressCopied ? "text-green-500 dark:text-green-500" : ""
                         }`}
                         onClick={() => {
                           props.handleCopyClick();
@@ -87,12 +88,12 @@ export default function PersonalDIDCard(props: any) {
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <p className="font-mono dark:text-white">
-                        {did ? formatAddress(address as string) : null}
+                      <p className={`font-mono dark:text-white  ${didCopied ? "text-green-500 dark:text-green-500" : ""}`}>
+                        {did ? formatAddress(did as string) : "..."}
                       </p>
                       <BiCopy
                         className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
-                          didCopied ? "text-green-500" : ""
+                          didCopied ? "text-green-500 dark:text-green-500" : ""
                         }`}
                         onClick={() => {
                           props.handleCopyClick();
@@ -112,13 +113,17 @@ export default function PersonalDIDCard(props: any) {
             <div className="card-body">
               <div className="flex items-center">
                 <div className="flex flex-col items-center">
-                  <img
-                    src="https://github.com/EricLin0619/BeePoll/blob/gh-pages/ethereum.png?raw=true"
+                  {theme === "dark" ? (
+                    <img
+                    src="whiteChain.png"
                     className="w-16"
                   ></img>
-                  <span className="font-bold font-mono dark:text-white">
-                    Goerli
-                  </span>
+                  ): (
+                    <img
+                    src="blackChain.png"
+                    className="w-16"
+                  ></img>
+                  )}
                 </div>
                 <div className="ml-auto">
                   <div className="mb-2">

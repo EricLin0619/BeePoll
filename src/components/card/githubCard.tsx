@@ -31,7 +31,7 @@ export default function Github(props: any) {
                 <span className="font-mono font-bold">Credentail ID</span>
               </div>
               <div className="flex items-center text-[#cccccc]">
-                <p className="font-mono">vc:hid...ui6uC2</p>
+                <p className={`font-mono ${copied ? "text-green-500": ""}`}>vc:hid...ui6uC2</p>
                 <BiCopy
                   className={`w-5 h-auto ml-1 cursor-pointer ${
                     copied ? "text-green-500" : ""
