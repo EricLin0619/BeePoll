@@ -10,3 +10,26 @@ export function formatAddress(address: string) {
     return `${prefix}...${suffix}`; // Combine the first six, ..., and last six characters
   }
 }
+
+function ldToJsonConvertor(ld: { [x: string]: any; }) {
+  const json = {} as any;
+  for (const key in ld) {
+    if (key === "@context") {
+      json['context'] = ld[key];
+    } else {
+      json[key] = ld[key]
+    }
+  }
+  return json;
+}
+
+
+export function getDIDDocJSON(doc: any) {
+  return ldToJsonConvertor(JSON.parse(JSON.stringify(ldToJsonConvertor(doc), (key, value) => {
+    if (value === "" || (Array.isArray(value) && value.length === 0)) {
+      return undefined;
+    }
+    return value;
+  })))
+
+}
