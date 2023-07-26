@@ -16,9 +16,9 @@ export const handleDidRegistration = async (
                 const didDocument = await createDid(address, token);
                 const message = JSON.stringify(didDocument);
                 const signature = await signMessage({ message });
-                const registrationRes = await registerDid(didDocument, signature, token) as any;
+                const registedDID = await registerDid(didDocument, signature, token) as any;
                 //console.log(registrationRes.metaData.didDocument.id);
-                return registrationRes.metaData.didDocument.id
+                return registedDID
             }
         } catch (error) {
             console.error("Error occurred during DID registration:", error);

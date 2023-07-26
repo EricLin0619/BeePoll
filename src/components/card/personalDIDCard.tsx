@@ -11,7 +11,7 @@ export default function PersonalDIDCard(props: any) {
   const [didCopied, setDidCopied] = useState(false);
   const [did, setDid] = useState("");
   const { address, isConnected } = useAccount();
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (isConnected) {
