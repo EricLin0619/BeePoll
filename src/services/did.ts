@@ -80,16 +80,14 @@ export const registerDid = async (didDocument: any, signature: any, token: strin
             },
         ],
     };
-
-    axios.post(url, requestBody, { headers })
-        .then(response => {
-            console.log("registerDid response:", response.data);
-            return response.data;
-        })
-        .catch(error => {
-            console.error("did register error：", error);
-            return error;
-        });
+    try {
+        const response = await axios.post(url, requestBody, { headers })
+        return response.data.did
+    }
+    catch (error) {
+        console.error('registerDID error:', error);
+        throw error;
+    }
 };
 
 export const resolveDid = async (did: string, token: string | undefined) => {
