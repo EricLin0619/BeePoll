@@ -90,6 +90,41 @@ export const registerDid = async (didDocument: any, signature: any, token: strin
     }
 };
 
+
+
+export const updateDid = async (didDocument: any, signature: any, token: string | undefined) => {
+    const url = 'https://api.entity.hypersign.id/api/v1/did';
+
+    const headers = {
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    };
+    const requestBody = {
+        didDocument,
+        signInfos: [
+            {
+                verification_method_id: didDocument.verificationMethod[0].id,
+                clientSpec: {
+                    type: 'eth-personalSign',
+                },
+                signature: signature,
+            },
+        ],
+        deactivate: false
+    };
+
+    try {
+        const response = await axios.patch(url, requestBody, { headers })
+        console.log("updateDid response:", response.data)
+        return response.data
+    }
+    catch (error) {
+        console.error('updateDid error:', error);
+        throw error;
+    }
+};
+
 export const resolveDid = async (did: string, token: string | undefined) => {
     const url = `https://api.entity.hypersign.id/api/v1/did/resolve/${did}`;
     const headers = {
