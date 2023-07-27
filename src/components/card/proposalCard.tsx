@@ -9,12 +9,10 @@ export default function ProposalCard() {
 
   function handleAccept(e: any) {
     e.stopPropagation();
-    console.log("Accept");
   }
 
   function handleDeny(e: any) {
     e.stopPropagation();
-    console.log("Deny");
   }
 
   return (

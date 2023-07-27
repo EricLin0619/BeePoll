@@ -1,12 +1,14 @@
 import { BiIdCard, BiCopy } from "react-icons/bi";
 import { FaDiscord, FaRegClock } from "react-icons/fa";
+import { BsCheckLg } from "react-icons/bs";
 import { useState } from "react";
 
 export default function DiscordCard(props: any) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyClick = () => {
-    const textToCopy = "vc:hid:testnet:zGTu1XFubxPCkdi1GUNxNmSbqc57PzjZWbH4P18T1DrY"; // 更改為您想複製的文字，或從狀態或屬性中取得
+    const textToCopy =
+      "vc:hid:testnet:zGTu1XFubxPCkdi1GUNxNmSbqc57PzjZWbH4P18T1DrY"; // 更改為您想複製的文字，或從狀態或屬性中取得
 
     navigator.clipboard.writeText(textToCopy).then(() => {
       setCopied(true);
@@ -30,16 +32,20 @@ export default function DiscordCard(props: any) {
                 <span className="font-mono font-bold">Credentail ID</span>
               </div>
               <div className="flex items-center text-[#cccccc]">
-                <p className={`font-mono ${copied ? "text-green-500": ""}`}>vc:hid...ui6uC2</p>
-                <BiCopy
-                  className={`w-5 h-auto ml-1 cursor-pointer ${
-                    copied ? "text-green-500" : ""
-                  }`}
-                  onClick={() => {
-                    props.handleCopyClick();
-                    handleCopyClick();
-                  }}
-                />
+                <p className="font-mono">
+                  vc:hid...ui6uC2
+                </p>
+                {!copied ? (
+                  <BiCopy
+                    className={`w-5 h-auto ml-1 cursor-pointer`}
+                    onClick={() => {
+                      props.handleCopyClick();
+                      handleCopyClick();
+                    }}
+                  />
+                ) : (
+                  <BsCheckLg className="text-green-500 w-5 h-auto ml-1" />
+                )}
               </div>
             </div>
             <div>
