@@ -37,7 +37,7 @@ export default function PersonalDIDCard({ handleCopyClick, did }: any) {
     <>
       {isConnected ? (
         <div className="ml-4">
-          <div className=" dark:border-white dark:border-solid dark:border-2 card w-[350px] p-2 light:bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-3 text-[#2E1503]">
+          <div className="realtive dark:border-white dark:border-solid dark:border-2 card w-[350px] p-2 light:bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-3 text-[#2E1503]">
             <div className="card-body">
               <div className="flex items-center">
                 <div className="flex flex-col items-center">
@@ -101,6 +101,9 @@ export default function PersonalDIDCard({ handleCopyClick, did }: any) {
                 </div>
               </div>
             </div>
+            <a href={explorer} target="_blank" rel="noreferrer">
+              <p className="font-mono absolute bottom-0.5 right-2 text-black text-sm">more...</p>
+            </a>
           </div>
         </div>
       ) : (

@@ -16,31 +16,31 @@ export default function Github(props: any) {
     issuanceDate: "",
     expirationDate: "",
   });
+  const explorer = "https://explorer.hypersign.id/hypersign-testnet/revocationRegistry/"+vc.id;
 
   useEffect(() => {
     async function getVcId() {
       const token = await getAccessToken();
       const res = await resolveDid(props.did, token);
-      if (res?.didDocument?.service[0]?.serviceEndpoint===undefined) {
+      if (res?.didDocument?.service[0]?.serviceEndpoint === undefined) {
         setVc({
           id: "",
           issuanceDate: "",
           expirationDate: "",
-        })
-        return console.log("no serviceEndpoint")
+        });
+        return console.log("no serviceEndpoint");
       }
-      
+
       const vc = await getVc(res?.didDocument?.service[0]?.serviceEndpoint);
       setVc({
         id: vc.claim.id,
         issuanceDate: vc.issuanceDate,
         expirationDate: vc.expirationDate,
-      })
+      });
     }
 
     getVcId();
-
-  },[isConnected, props.did, address])
+  }, [isConnected, props.did, address]);
 
   const handleCopyClick = () => {
     const textToCopy = vc.id; // 更改為您想複製的文字，或從狀態或屬性中取得
@@ -117,6 +117,11 @@ export default function Github(props: any) {
           </div>
         </div>
       </div>
+      {vc.id !== "" && isConnected && (
+        <a href={explorer} target="_blank" rel="noreferrer">
+          <p className="font-mono absolute bottom-0.5 right-2 text-[#cccccc] text-sm">more...</p>
+        </a>
+      )}
     </div>
   );
 }
