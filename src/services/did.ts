@@ -134,7 +134,6 @@ export const resolveDid = async (did: string, token: string | undefined) => {
 
     try {
         const response: AxiosResponse = await axios.get(url, { headers });
-        console.log("resolveDid response:", response.data);
         return response.data;
     } catch (error: any) {
         console.error('Error occurred:', error.message);

@@ -27,8 +27,7 @@ export const issueVc = async (did: any) => {
     };
     try {
         const response = await axios.post(url, requestBody, { headers })
-        console.log("issue Vc:", response.data)
-        return response.data
+        return response.data.credentialStatus.claim.id
     }
     catch (error) {
         console.error('issue Vc error:', error);
@@ -48,8 +47,7 @@ export const getVc = async (vcId: any) => {
 
     try {
         const response = await axios.get(url, { headers });
-        console.log("get vc:", response.data)
-        return response;
+        return response.data.credentialStatus;
     } catch (error) {
         console.error('get Vc error:', error);
         throw error;

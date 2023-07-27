@@ -1,25 +1,17 @@
 import { BiIdCard, BiWallet, BiCopy } from "react-icons/bi";
+import { BsCheckLg } from "react-icons/bs";
 import { useState } from "react";
 import { useAccount } from "wagmi";
-import { useEffect } from "react";
-import { handleDidRegistration } from "../../services/handleDidRegirtration";
 import { formatAddress } from "../../services/utils";
 import { useTheme } from "next-themes";
 
-export default function PersonalDIDCard(props: any) {
+export default function PersonalDIDCard({ handleCopyClick, did }: any) {
   const [addressCopied, setAddressCopied] = useState(false);
   const [didCopied, setDidCopied] = useState(false);
-  const [did, setDid] = useState("");
   const { address, isConnected } = useAccount();
   const { theme } = useTheme();
-
-  useEffect(() => {
-    if (isConnected) {
-      handleDidRegistration(address).then((did) => {
-        setDid(did);
-      });
-    }
-  }, [address, isConnected]);
+  const explorer =
+    "https://explorer.hypersign.id/hypersign-testnet/identity/" + did;
 
   const handleCopyAddress = () => {
     const textToCopy = address; // 更改為您想複製的文字，或從狀態或屬性中取得
@@ -66,18 +58,20 @@ export default function PersonalDIDCard(props: any) {
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <p className={`font-mono dark:text-white  ${addressCopied ? "text-green-500 dark:text-green-500" : ""}`}>
+                      <p className={`font-mono dark:text-white`}>
                         {formatAddress(address as string)}
                       </p>
-                      <BiCopy
-                        className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
-                          addressCopied ? "text-green-500 dark:text-green-500" : ""
-                        }`}
-                        onClick={() => {
-                          props.handleCopyClick();
-                          handleCopyAddress();
-                        }}
-                      />
+                      {!addressCopied ? (
+                        <BiCopy
+                          className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white`}
+                          onClick={() => {
+                            handleCopyClick();
+                            handleCopyAddress();
+                          }}
+                        />
+                      ) : (
+                        <BsCheckLg className="text-green-500 w-5 h-auto ml-1" />
+                      )}
                     </div>
                   </div>
                   <div>
@@ -88,18 +82,20 @@ export default function PersonalDIDCard(props: any) {
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <p className={`font-mono dark:text-white  ${didCopied ? "text-green-500 dark:text-green-500" : ""}`}>
+                      <p className={`font-mono dark:text-white`}>
                         {did ? formatAddress(did as string) : "..."}
                       </p>
-                      <BiCopy
-                        className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white ${
-                          didCopied ? "text-green-500 dark:text-green-500" : ""
-                        }`}
-                        onClick={() => {
-                          props.handleCopyClick();
-                          handleCopyDID();
-                        }}
-                      />
+                      {!didCopied ? (
+                        <BiCopy
+                          className={`text-black w-5 h-auto ml-1 cursor-pointer dark:text-white`}
+                          onClick={() => {
+                            handleCopyClick();
+                            handleCopyDID();
+                          }}
+                        />
+                      ) : (
+                        <BsCheckLg className="text-green-500 w-5 h-auto ml-1" />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -114,15 +110,9 @@ export default function PersonalDIDCard(props: any) {
               <div className="flex items-center">
                 <div className="flex flex-col items-center">
                   {theme === "dark" ? (
-                    <img
-                    src="whiteChain.png"
-                    className="w-16"
-                  ></img>
-                  ): (
-                    <img
-                    src="blackChain.png"
-                    className="w-16"
-                  ></img>
+                    <img src="whiteChain.png" className="w-16"></img>
+                  ) : (
+                    <img src="blackChain.png" className="w-16"></img>
                   )}
                 </div>
                 <div className="ml-auto">

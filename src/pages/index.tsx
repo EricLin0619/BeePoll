@@ -9,7 +9,7 @@ function Page() {
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
-    }, 2000);
+    }, 1000);
   };
   return (
     <div className="relative dark:bg-slate-800">
