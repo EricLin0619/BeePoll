@@ -1,5 +1,6 @@
 import { signMessage } from "@wagmi/core";
 import { getAccessToken, resolveDid, createDid, registerDid } from "./did";
+import { getDIDDocJSON } from "./utils";
 
 export const handleDidRegistration = async (
     address: `0x${string}` | undefined) => {
@@ -17,7 +18,6 @@ export const handleDidRegistration = async (
             const message = JSON.stringify(didDocument);
             const signature = await signMessage({ message });
             const registedDID = await registerDid(didDocument, signature, token) as any;
-            //console.log(registrationRes.metaData.didDocument.id);
             return registedDID
         }
     } catch (error) {
