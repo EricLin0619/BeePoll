@@ -33,7 +33,6 @@ export const createDid = async (address: `0x${string}` | undefined, token: strin
             verificationRelationships: [
                 "assertionMethod",
                 "authentication",
-                // "keyAgreement",
                 "capabilityInvocation",
                 "capabilityDelegation"
             ]
@@ -49,6 +48,7 @@ export const createDid = async (address: `0x${string}` | undefined, token: strin
         let originDidDocument = response.data.metaData.didDocument;
         const context = originDidDocument['@context'];
         delete originDidDocument['@context'];
+        delete originDidDocument['keyAgreement']
         const didDocument = { context, ...originDidDocument };
 
         return didDocument;
@@ -82,6 +82,7 @@ export const registerDid = async (didDocument: any, signature: any, token: strin
     };
     try {
         const response = await axios.post(url, requestBody, { headers })
+        console.log("registerDid response:", response.data)
         return response.data.did
     }
     catch (error) {
