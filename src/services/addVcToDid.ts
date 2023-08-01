@@ -1,16 +1,21 @@
 import { signMessage } from "@wagmi/core";
 import { getAccessToken, resolveDid, createDid, registerDid, updateDid } from "./did";
 import { getDIDDocJSON } from "./utils";
+import * as crypto from 'crypto';
+
 
 export const addVcToDid = async (
     address: `0x${string}` | undefined,
     vcId: string,
+    userSub: string,
     webAuthnId: string
 ) => {
 
     try {
         const token = await getAccessToken();
         const did = "did:hid:testnet:" + address;
+        const hash = crypto.createHash("sha256").update(userSub + webAuthnId).digest('hex');
+        console.log("hash", hash)
         let didDocument = await resolveDid(did, token).then((res) => {
             return res.didDocument
         });
@@ -19,14 +24,14 @@ export const addVcToDid = async (
             didDocument.service.push({
                 id: "did:hid:testnet:z23dCariJNNpMNca86EtVZVvrLpn61isd86fWVyWa8Jkm#linked-domain",
                 type: "LinkedDomains",
-                serviceEndpoint: vcId + "#" + webAuthnId
+                serviceEndpoint: vcId + "#" + hash
             })
         } else {
             didDocument.keyAgreement = []
             didDocument.service = [{
                 id: "did:hid:testnet:z23dCariJNNpMNca86EtVZVvrLpn61isd86fWVyWa8Jkm#linked-domain",
                 type: "LinkedDomains",
-                serviceEndpoint: vcId + "#" + webAuthnId
+                serviceEndpoint: vcId + "#" + hash
             }]
         }
 
