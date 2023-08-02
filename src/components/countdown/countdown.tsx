@@ -7,7 +7,7 @@ export default function Countdown() {
   const [secs, setSecs] = useState(0);
 
   useEffect(() => {
-    const target = new Date("8/31/2023 23:59:59")
+    const target = new Date("8/10/2023 20:00:00")
     const interval = setInterval(() => {
     const now = new Date()
     const difference = target.getTime() - now.getTime()

@@ -16,11 +16,16 @@ export default function Github(props: any) {
     issuanceDate: "",
     expirationDate: "",
   });
-  const explorer = "https://explorer.hypersign.id/hypersign-testnet/revocationRegistry/"+vc.id;
+  const explorer = `https://explorer.hypersign.id/hypersign-testnet/revocationRegistry/${vc.id}`;
 
   useEffect(() => {
     async function getVcId() {
       const token = await getAccessToken();
+      if (props.did === "") {
+        console.log("no did yet")
+        return
+      }
+
       const res = await resolveDid(props.did, token);
       if (res?.didDocument?.service[0]?.serviceEndpoint === undefined) {
         setVc({

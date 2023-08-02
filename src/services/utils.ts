@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 export function formatAddress(address: string) {
   if (!address) {
     return ""; // If the address is undefined, return an empty string
@@ -32,4 +34,12 @@ export function getDIDDocJSON(doc: any) {
     return value;
   })))
 
+}
+
+function clean(str: string) {
+  return str.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+}
+
+export function generateChallenge() {
+  return clean(crypto.randomBytes(32).toString("base64"));
 }
