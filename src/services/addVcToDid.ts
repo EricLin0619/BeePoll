@@ -4,7 +4,8 @@ import { getDIDDocJSON } from "./utils";
 
 export const addVcToDid = async (
     address: `0x${string}` | undefined,
-    vcId: string
+    vcId: string,
+    webAuthnId: string
 ) => {
 
     try {
@@ -14,11 +15,20 @@ export const addVcToDid = async (
             return res.didDocument
         });
 
-        didDocument.service.push({
-            id: "did:hid:testnet:z23dCariJNNpMNca86EtVZVvrLpn61isd86fWVyWa8Jkm#linked-domain",
-            type: "LinkedDomains",
-            serviceEndpoint: vcId
-        })
+        if (didDocument.service.length == 0) {
+            didDocument.service.push({
+                id: "did:hid:testnet:z23dCariJNNpMNca86EtVZVvrLpn61isd86fWVyWa8Jkm#linked-domain",
+                type: "LinkedDomains",
+                serviceEndpoint: vcId + "#" + webAuthnId
+            })
+        } else {
+            didDocument.keyAgreement = []
+            didDocument.service = [{
+                id: "did:hid:testnet:z23dCariJNNpMNca86EtVZVvrLpn61isd86fWVyWa8Jkm#linked-domain",
+                type: "LinkedDomains",
+                serviceEndpoint: vcId + "#" + webAuthnId
+            }]
+        }
 
         const message = getDIDDocJSON(didDocument);
         const signature = await signMessage({ message: JSON.stringify(message) });

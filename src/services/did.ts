@@ -33,7 +33,7 @@ export const createDid = async (address: `0x${string}` | undefined, token: strin
             verificationRelationships: [
                 "assertionMethod",
                 "authentication",
-                "keyAgreement",
+                // "keyAgreement",
                 "capabilityInvocation",
                 "capabilityDelegation"
             ]
