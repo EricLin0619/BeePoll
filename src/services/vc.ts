@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAccessToken } from "./did";
 
-export const issueVc = async (did: any) => {
+export const issueVc = async (did: any, webAuthnId: string) => {
     const url = 'https://api.entity.hypersign.id/api/v1/credential/issue';
     const token = await getAccessToken();
     const headers = {
@@ -16,7 +16,7 @@ export const issueVc = async (did: any) => {
         issuerDid: 'did:hid:testnet:z996acTcJsUzLZb2HwPnoX9YrDmj5u41vGpWYUkTSEZMg',
         expirationDate: '2027-12-10T18:30:00.000Z',
         fields: {
-            name: 'test name',
+            name: webAuthnId,
             nickname: 'test nickname',
             picture: 'https://s.gravatar.com/avatar/5b595a246366e874de416f71a687fd85?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fmu.png',
             sub: 'oauth2|github|337150242489106436',

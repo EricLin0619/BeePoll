@@ -5,19 +5,83 @@ import { issueVc, getVc } from "../services/vc";
 import { handleDidRegistration } from "../services/handleDidRegirtration";
 import { resolveDid, getAccessToken } from "../services/did";
 import { addVcToDid } from "../services/addVcToDid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useAccount } from "wagmi";
 import { log } from "console";
+import { useRouter } from "next/router";
+import { supported, create, get } from "@github/webauthn-json";
+import { generateChallenge } from "../services/utils";
 
+//如果有vc ，就不用再指紋辨識了
 export default function Identity(props: any) {
-  async function handleGetCredential() {
-    const vcId = await issueVc(did);
-    const data = await addVcToDid(address, vcId)
-    console.log(data)
+  const router = useRouter();
+
+  const onCreate = async () => {
+    const credential = await create({
+      publicKey: {
+        challenge: generateChallenge(),
+        rp: {
+          name: "next-webauthn",
+          // TODO: Change
+          id: "ericlin0619.github.io",
+        },
+        user: {
+          id: window.crypto.randomUUID(),
+          name: "test",
+          displayName: "test" as string,
+        },
+
+        pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+        timeout: 60000,
+        attestation: "direct",
+        authenticatorSelection: {
+          residentKey: "required",
+          userVerification: "required",
+        },
+      },
+    });
+    console.log("create credential", JSON.stringify(credential, null, 2))
+    return credential.id;
   }
+
+  const onGet = async (event: FormEvent) => {
+    event.preventDefault();
+
+    const credential = await get({
+      publicKey: {
+        challenge: generateChallenge(),//generateChallenge(),
+        timeout: 60000,
+        userVerification: "required",
+        rpId: "ericlin0619.github.io",
+      },
+    });
+
+    console.log("credential", JSON.stringify(credential, null, 2))
+  };
+
+
 
   const { address, isConnected } = useAccount();
   const [did, setDid] = useState("");
+
+  async function handleGetCredential() {
+    const didDoc = await resolveDid(did, await getAccessToken());
+    const webAuthnId = await onCreate();
+    if (didDoc?.didDocument?.service[0] === undefined) {
+      console.log("create vc")
+      const webAuthnId = await onCreate();
+      console.log("webAuthnId", webAuthnId)
+      const vcId = await issueVc(did, webAuthnId);
+      const data = await addVcToDid(address, vcId, webAuthnId)
+      console.log(data)
+    }
+    else {
+      console.log("already have vc")
+      console.log("did services:", didDoc?.didDocument?.service[0])
+    }
+
+
+  }
 
   useEffect(() => {
     async function getDid() {
@@ -27,7 +91,7 @@ export default function Identity(props: any) {
     if (isConnected) {
       getDid();
     }
-  }, [address, isConnected,did]);
+  }, [address, isConnected, did]);
 
 
   return (
@@ -36,6 +100,9 @@ export default function Identity(props: any) {
         <p className="font-mono text-black font-bold text-3xl ml-5  dark:text-white">
           IDENTITY
         </p>
+        <button className="btn btn-outline h-1/3 p-1 btn-warning ml-auto" onClick={onGet}>
+          use webAuthn
+        </button>
         <button className="btn btn-outline h-1/3 p-1 btn-warning ml-auto" onClick={handleGetCredential}>
           Get Credential
         </button>
@@ -46,7 +113,7 @@ export default function Identity(props: any) {
           <p className="font-mono text-black text-xl ml-5 mt-3 mb-7 dark:text-white">
             LINKED WALLET
           </p>
-          <PersonalDIDCard handleCopyClick={props.handleCopyClick} did= {did}/>
+          <PersonalDIDCard handleCopyClick={props.handleCopyClick} did={did} />
         </div>
         <div className="ml-7">
           <div className="flex items-center">

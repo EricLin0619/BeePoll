@@ -4,7 +4,7 @@ export const getAccessToken = async () => {
     const url = 'https://api.entity.hypersign.id/api/v1/app/oauth';
     const headers = {
         'accept': 'application/json',
-        'X-Api-Secret-Key': '1fae14d6e06b702c5b825e469fc2b.7e218298064c0cc5c00aedcfe73cb2c501b60cea1209245a471e4c53334c6dca457635a7884658350fe602aa21de03fbb'
+        'X-Api-Secret-Key': "23e6b757a9723e0ba0bd89c67edd9.f972553d5d7df2ebfe40142e4e6ea034107b628209b6935262a22a39b21152926405f8a3f03e32d79ebf75afb47d89cf3"
     };
 
     try {
@@ -33,7 +33,7 @@ export const createDid = async (address: `0x${string}` | undefined, token: strin
             verificationRelationships: [
                 "assertionMethod",
                 "authentication",
-                "keyAgreement",
+                // "keyAgreement",
                 "capabilityInvocation",
                 "capabilityDelegation"
             ]
