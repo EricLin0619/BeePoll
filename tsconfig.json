@@ -25,11 +25,13 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
+    "./src",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/pages/api/auth/[...nextauth]/[...nextauth].js", "src/pages/api/auth/[...nextauth].js"  ],
+  ],
+  "files": [
+    "next-env.d.ts",
+  ],
   "exclude": [
     "node_modules"
   ]
