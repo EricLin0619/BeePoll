@@ -24,7 +24,6 @@ contract BeePoll {
     function createProposals (string calldata name, uint256 continueSec) public{
         Proposal storage poll = proposals[totalProposals];
         poll.name = name;
-        poll.creater = msg.sender;
         poll.endTime = block.timestamp + continueSec;
         totalProposals += 1;
     }
