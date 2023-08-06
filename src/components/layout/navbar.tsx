@@ -1,6 +1,6 @@
 import { ConnectKitButton } from "connectkit"
 import { useRouter } from "next/router"
-import Darkmode from "../darkmodeButton"
+import Darkmode from "../button/darkmodeButton"
 
 
 export default function Navbar() {
