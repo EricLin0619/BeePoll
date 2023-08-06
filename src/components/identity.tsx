@@ -6,6 +6,7 @@ import { addVcToDid } from "../services/addVcToDid";
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import VerifyVcButton from "./button/verifyVcButton";
 import AnchorLink from "./layout/anchorLink";
 import { onCreate } from "../services/webAuthnUtils";
 
@@ -50,7 +51,15 @@ export default function Identity(props: any) {
         <p className="font-mono text-black font-bold text-3xl ml-5  dark:text-white">
           IDENTITY
         </p>
-        <a href="/BeePoll/api/auth/login" className="btn btn-outline h-1/3 p-1 btn-warning ml-auto">Get Credenital</a>
+        <div className="flex space-x-4 ml-auto">
+          <VerifyVcButton/>
+          <a
+            href="/BeePoll/api/auth/login"
+            className="btn btn-outline px-2 h-1/3 btn-warning"
+          >
+            Get Credenital
+          </a>
+        </div>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 my-[0px]"></div>
       <div className="flex items-center mt-2">
@@ -72,6 +81,6 @@ export default function Identity(props: any) {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }

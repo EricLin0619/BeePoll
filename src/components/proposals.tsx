@@ -6,7 +6,7 @@ export default function Proposals() {
     <div className="mt-10">
       <div className="flex mt-10 w-1/2">
         <p className="font-mono text-black font-bold text-3xl ml-5 mt-3 dark:text-white">VOTING</p>
-        <button className="btn btn-outline h-1/3 p-1 btn-warning ml-auto ">
+        <button className="btn btn-outline h-1/3 btn-warning px-2 ml-auto ">
           New Vote
         </button>
       </div>

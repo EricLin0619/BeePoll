@@ -102,7 +102,7 @@ export default function PersonalDIDCard({ handleCopyClick, did }: any) {
               </div>
             </div>
             <a href={explorer} target="_blank" rel="noreferrer">
-              <p className="font-mono absolute bottom-0.5 right-2 text-black text-sm">more...</p>
+              <p className="font-mono absolute bottom-0.5 right-2 text-black text-sm dark:text-white">more...</p>
             </a>
           </div>
         </div>
