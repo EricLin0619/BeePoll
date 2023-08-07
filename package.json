@@ -6,6 +6,7 @@
   "scripts": {
     "dev": " next dev",
     "build": "next build",
+    "build:workflows": "export NODE_ENV=production && next build && next export && touch out/.nojekyll",
     "start": "next start",
     "lint": "next lint"
   },
