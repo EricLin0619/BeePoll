@@ -1,3 +1,4 @@
+export { }
 // import { writeContract, prepareWriteContract, readContract } from '@wagmi/core'
 // import ABI from "../contractABI/vote.json"
 

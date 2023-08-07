@@ -1,3 +1,4 @@
+import React from "react";
 import DetailCard from "../components/card/detailCard";
 import NoCard from "../components/card/noCard";
 import YesCard from "../components/card/yesCard";
@@ -5,7 +6,7 @@ import YesCard from "../components/card/yesCard";
 export default function Page() {
   return (
     <div className="flex justify-center my-10 dark:bg-slate-800">
-      <DetailCard/>
+      <DetailCard />
       <div>
         <YesCard />
         <NoCard />

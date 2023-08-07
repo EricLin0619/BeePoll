@@ -9,6 +9,7 @@ import NextHead from "next/head";
 import { GrazProvider, mainnetChains } from "graz";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { ThemeProvider } from "next-themes";
+import React from "react";
 
 function App({ Component, pageProps: session, ...pageProps }: AppProps) {
   return (
