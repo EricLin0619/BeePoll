@@ -9,7 +9,7 @@ export const onCreate = async (did: string) => {
             rp: {
                 name: "next-webauthn",
                 // TODO: Change
-                id: "ericlin0619.github.io",
+                id: "localhost",//"ericlin0619.github.io",
             },
             user: {
                 id: window.crypto.randomUUID(),
@@ -38,7 +38,7 @@ export const onGet = async (event: FormEvent) => {
             challenge: generateChallenge(),//generateChallenge(),
             timeout: 60000,
             userVerification: "required",
-            rpId: "ericlin0619.github.io",
+            rpId: "localhost",//"ericlin0619.github.io",
         },
     });
 
