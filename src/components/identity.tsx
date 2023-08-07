@@ -9,6 +9,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import VerifyVcButton from "./button/verifyVcButton";
 import AnchorLink from "./layout/anchorLink";
 import { onCreate } from "../services/webAuthnUtils";
+import { getAccessToken, resolveDid } from "../services/did";
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Identity(props: any) {
   const user = useUser();
@@ -28,13 +33,20 @@ export default function Identity(props: any) {
 
   useEffect(() => {
     async function handleGetCredential() {
-      console.log("create vc")
-      const webAuthnId = await onCreate(did);
-      console.log("webAuthnId", webAuthnId)
-      const vcId = await issueVc(did, user.user, webAuthnId);
-      const userSub = user.user?.sub as string;
-      const data = await addVcToDid(address, vcId, userSub, webAuthnId)
-      console.log(data)
+      const didDocument = await resolveDid(did, await getAccessToken());
+      if (didDocument?.didDocument?.service[0]?.serviceEndpoint === undefined) {
+        console.log("create vc")
+        const webAuthnId = await onCreate(did);
+        console.log("webAuthnId", webAuthnId)
+        const vcId = await issueVc(did, user.user, webAuthnId);
+        const userSub = user.user?.sub as string;
+        const data = await addVcToDid(address, vcId, userSub, webAuthnId)
+        console.log(data)
+      }
+      else {
+        console.log("vc already created")
+        toast("Verifiable Credentials already created", { hideProgressBar: true, theme: 'dark' });
+      }
     }
 
     console.log("github user", JSON.stringify(user, null, 2))
@@ -52,13 +64,20 @@ export default function Identity(props: any) {
           IDENTITY
         </p>
         <div className="flex space-x-4 ml-auto">
-          <VerifyVcButton/>
+          <VerifyVcButton />
           <a
-            href="/BeePoll/api/auth/login"
+            href="api/auth/login"
             className="btn btn-outline px-2 h-1/3 btn-warning"
           >
             Get Credenital
           </a>
+          <a
+            href="api/auth/logout"
+            className="btn btn-outline px-2 h-1/3 btn-warning"
+          >
+            Logout
+          </a>
+          <ToastContainer limit={2} />
         </div>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 my-[0px]"></div>
