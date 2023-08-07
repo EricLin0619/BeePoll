@@ -19,3 +19,18 @@ task('verify:contract', 'Verify deployed contract')
   },
   )
   
+  task('verify:beepoll', 'Verify deployed contract')
+  .setAction(async (_, hre) => {
+    try {
+      const contractAddress = fs.readFileSync(`scripts/address/${hre.network.name}/BeePoll.json`)
+      const addressData = JSON.parse(contractAddress.toString())
+      await hre.run('verify:verify', {
+        address: addressData.main,
+        constructorArguments: [],
+        contract: 'contracts/BeePoll.sol:BeePoll',
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  )
