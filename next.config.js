@@ -3,15 +3,8 @@
 const isProd = process.env.NODE_ENV !== 'development'
 
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*",
-      },
-    ],
+    unoptimized: true
   },
   experimental: {
     appDir: false,
