@@ -9,7 +9,7 @@ export const onCreate = async (did: string) => {
             rp: {
                 name: "next-webauthn",
                 // TODO: Change
-                id: "localhost",//"ericlin0619.github.io",
+                id: "bee-poll.vercel.app",//"ericlin0619.github.io",
             },
             user: {
                 id: window.crypto.randomUUID(),
@@ -38,7 +38,7 @@ export const onGet = async (event: FormEvent) => {
             challenge: generateChallenge(),//generateChallenge(),
             timeout: 60000,
             userVerification: "required",
-            rpId: "localhost",//"ericlin0619.github.io",
+            rpId: "bee-poll.vercel.app",//"ericlin0619.github.io",
         },
     });
 
