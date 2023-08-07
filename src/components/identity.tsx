@@ -13,6 +13,7 @@ import { getAccessToken, resolveDid } from "../services/did";
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link";
 
 
 export default function Identity(props: any) {
@@ -65,12 +66,12 @@ export default function Identity(props: any) {
         </p>
         <div className="flex space-x-4 ml-auto">
           <VerifyVcButton />
-          <a
-            href="api/auth/login"
+          <Link
+            href="/api/auth/login"
             className="btn btn-outline px-2 h-1/3 btn-warning"
           >
             Get Credenital
-          </a>
+          </Link>
           <a
             href="api/auth/logout"
             className="btn btn-outline px-2 h-1/3 btn-warning"
