@@ -7,10 +7,8 @@ import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import VerifyVcButton from "./button/verifyVcButton";
-import AnchorLink from "./layout/anchorLink";
 import { onCreate } from "../services/webAuthnUtils";
 import { getAccessToken, resolveDid } from "../services/did";
-import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
@@ -46,7 +44,7 @@ export default function Identity(props: any) {
       }
       else {
         console.log("vc already created")
-        toast("Verifiable Credentials already created", { hideProgressBar: true, theme: 'dark' });
+        toast("Verifiable Credentials already created", { hideProgressBar: true, theme: 'dark', autoClose: 1000 });
       }
     }
 
@@ -78,7 +76,7 @@ export default function Identity(props: any) {
           >
             Logout
           </a>
-          <ToastContainer limit={2} />
+          <ToastContainer limit={1} />
         </div>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 my-[0px]"></div>
