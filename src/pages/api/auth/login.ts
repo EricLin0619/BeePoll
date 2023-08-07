@@ -11,7 +11,6 @@ const loginHandler = async (req: NextApiRequest, res: NextApiResponse) => {
             authorizationParams: {
                 screen_hint: "login",
             },
-            returnTo: '/BeePoll'
         });
     } catch (error: any) {
         res.status(error.status || 400).end(error.message);

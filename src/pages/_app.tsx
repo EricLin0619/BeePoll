@@ -12,7 +12,7 @@ import { ThemeProvider } from "next-themes";
 
 function App({ Component, pageProps: session, ...pageProps }: AppProps) {
   return (
-    <UserProvider loginUrl="/BeePoll/api/auth/login">
+    <UserProvider loginUrl="/api/auth/login">
       <ThemeProvider attribute="class">
         <WagmiConfig client={client}>
           <ConnectKitProvider>

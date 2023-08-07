@@ -12,15 +12,15 @@ export const issueVc = async (did: any, user: any, webAuthnId: any) => {
 
 
     const requestBody = {
-        schemaId: 'sch:hid:testnet:z4RzEpiYEiJArpJDo9ay74db8E3fQW2Ppau67b2v6JMX5:1.0',
+        schemaId: 'sch:hid:testnet:z2dNytfsbHiAnnx6JmC6V1T5y1sF2XXkpKAaHjAao587N:1.0',
         subjectDid: did,
         issuerDid: 'did:hid:testnet:z996acTcJsUzLZb2HwPnoX9YrDmj5u41vGpWYUkTSEZMg',
         expirationDate: '2027-12-10T18:30:00.000Z',
         fields: {
-            name: user.name,
-            nickname: user.nickname,
-            picture: user.picture,
-            sub: user.sub,
+            githubName: user.name,
+            githubNickname: user.nickname,
+            githubSub: user.sub,
+            webAuthnId: webAuthnId,
         },
         namespace: 'testnet',
         verificationMethodId: 'did:hid:testnet:z996acTcJsUzLZb2HwPnoX9YrDmj5u41vGpWYUkTSEZMg#key-1',
