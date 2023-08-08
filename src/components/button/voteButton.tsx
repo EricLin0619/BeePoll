@@ -1,4 +1,4 @@
-import { createProposal } from "../../services/vote";
+import { createProposal } from "../../services/contractApi/contract";
 import { DateTimePicker, DatePicker } from "@mui/x-date-pickers";
 
 export default function VoteButton() {

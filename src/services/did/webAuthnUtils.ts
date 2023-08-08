@@ -1,5 +1,5 @@
 import { create, get } from "@github/webauthn-json";
-import { generateChallenge } from "./utils";
+import { generateChallenge } from "../utils";
 import { FormEvent } from "react";
 
 export const onCreate = async (did: string) => {

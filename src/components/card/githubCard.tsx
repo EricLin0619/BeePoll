@@ -5,8 +5,8 @@ import { BsCheckLg } from "react-icons/bs";
 import { useAccount } from "wagmi";
 import { formatAddress } from "../../services/utils";
 import { useState, useEffect } from "react";
-import { resolveDid, getAccessToken } from "../../services/did";
-import { getVc } from "../../services/vc";
+import { resolveDid, getAccessToken } from "../../services/did/did";
+import { getVc } from "../../services/did/vc";
 
 export default function Github(props: any) {
   const [copied, setCopied] = useState(false);

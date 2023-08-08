@@ -1,6 +1,6 @@
 import { signMessage } from "@wagmi/core";
-import { getAccessToken, resolveDid, createDid, registerDid, updateDid } from "./did";
-import { getDIDDocJSON } from "./utils";
+import { getAccessToken, resolveDid, updateDid } from "./did";
+import { getDIDDocJSON } from "../utils";
 import * as crypto from 'crypto';
 
 

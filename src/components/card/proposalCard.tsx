@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { vote } from "../../services/vote";
+import { vote } from "../../services/contractApi/contract";
 import SmallCountdown from "../countdown/smallCountdown";
 import { ProposalCard } from "../../type/type"
 
