@@ -1,17 +1,17 @@
 import PersonalDIDCard from "./card/personalDIDCard";
 import Github from "./card/githubCard";
-import { issueVc } from "../services/vc";
-import { handleDidRegistration } from "../services/handleDidRegirtration";
-import { addVcToDid } from "../services/addVcToDid";
+import { issueVc } from "../services/did/vc";
+import { handleDidRegistration } from "../services/did/handleDidRegirtration";
+import { addVcToDid } from "../services/did/addVcToDid";
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import VerifyVcButton from "./button/verifyVcButton";
-import { checkDidForMatchingGithubSub, getAccessToken, resolveDid } from "../services/did";
+import { checkDidForMatchingGithubSub, getAccessToken, resolveDid } from "../services/did/did";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import router, { useRouter } from "next/router";
-import { handleGetCredential } from "../services/handleGetCredential";
+import { handleGetCredential } from "../services/did/handleGetCredential";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 

@@ -1,6 +1,6 @@
 import ProposalCard from "./card/proposalCard";
 import SelectBar from "./selectBar";
-import { createProposal, getProposals } from "../services/vote";
+import { createProposal, getProposals, registerUser } from "../services/contractApi/contract";
 import VoteButton from "./button/voteButton";
 import { useState, useEffect } from "react";
 
@@ -18,6 +18,7 @@ export default function Proposals() {
         <p className="font-mono text-black font-bold text-3xl ml-5 mt-3 dark:text-white">
           VOTING
         </p>
+        <button onClick={()=>{registerUser("0xeB38bf37909ABA425A1486dF33B1c342C5E97427","asdfasdfasdf")}}>asdf</button>
         <VoteButton/>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 mt-0 mb-4"></div>
