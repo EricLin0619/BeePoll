@@ -52,6 +52,7 @@ export async function getBlockTime() {
         abi: ABI,
         chainId: goerliId,
         functionName: 'getBlockTime()',
+        args: []
     })
     return data
 }
@@ -75,6 +76,7 @@ export async function getProposalCount() {
         abi: ABI,
         chainId: goerliId,
         functionName: 'totalProposals()',
+        args: []
     })
     return data
 }
