@@ -91,7 +91,14 @@ const config: HardhatUserConfig = {
     tests: './test',
   },
   solidity: {
-    version: '0.8.17',
+    compilers: [
+      {
+        version: '0.8.18',
+      },
+      {
+        version: '0.6.11',
+      },
+    ],
     settings: {
       metadata: {
         // Not including the metadata hash
@@ -108,10 +115,10 @@ const config: HardhatUserConfig = {
   },
   circom: {
     inputBasePath: './circuits',
-    ptau: 'https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_15.ptau',
+    ptau: 'https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_22.ptau',
     circuits: [
       {
-        name: 'testV',
+        name: 'himitsu',
       },
     ],
   },
