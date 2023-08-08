@@ -43,3 +43,4 @@ function clean(str: string) {
 export function generateChallenge() {
   return clean(crypto.randomBytes(32).toString("base64"));
 }
+

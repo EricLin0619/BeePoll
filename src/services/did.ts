@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import * as crypto from 'crypto';
 
 export const getAccessToken = async () => {
     const url = 'https://api.entity.hypersign.id/api/v1/app/oauth';
@@ -139,5 +140,47 @@ export const resolveDid = async (did: string, token: string | undefined) => {
     } catch (error: any) {
         console.error('Error occurred:', error.message);
     }
+}
+
+export const getDids = async (token: string | undefined) => {
+    const url = `https://api.entity.hypersign.id/api/v1/did`;
+    const headers = {
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    };
+
+    try {
+        const response: AxiosResponse = await axios.get(url, { headers });
+        const didList = [...new Set(response.data.data)];
+        return didList;
+    } catch (error: any) {
+        console.error('Error occurred:', error.message);
+    }
+}
+
+export const checkDidForMatchingGithubSub = async (did: string, githubSub: string) => {
+    const token = await getAccessToken();
+    let didList = await getDids(token) as string[];
+    delete didList[didList.indexOf(did)];
+    console.log("didList", didList)
+    const targetHash = crypto.createHash('sha256').update(githubSub).digest('hex');
+    if (didList.length === 0) return false;
+    else {
+        for (const did of didList) {
+            const didDocument = await resolveDid(did, token);
+            if (
+                didDocument.didDocument &&
+                Array.isArray(didDocument.didDocument.service) &&
+                didDocument.didDocument.service.length > 0
+            ) {
+                const gihubSubHash = didDocument.didDocument.service[0].serviceEndpoint.split('#')[1];
+                console.log("onchain githubSubHash", gihubSubHash)
+                if (gihubSubHash === targetHash) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
