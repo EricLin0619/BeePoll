@@ -115,7 +115,7 @@ const config: HardhatUserConfig = {
   },
   circom: {
     inputBasePath: './circuits',
-    ptau: 'https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_22.ptau',
+    ptau: 'https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_15.ptau',
     circuits: [
       {
         name: 'himitsu',
