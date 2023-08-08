@@ -8,14 +8,14 @@ export default function VoteButton() {
         onClick={() => {
           if (document) {
             (
-              document.getElementById("my_modal_2") as HTMLFormElement
+              document.getElementById("my_modal_3") as HTMLFormElement
             ).showModal();
           }
         }}
       >
         New Vote
       </button>
-      <dialog id="my_modal_2" className="modal">
+      <dialog id="my_modal_3" className="modal">
         <form method="dialog" className="modal-box p-8">
           <h3 className="font-bold text-lg text-white">
             Create your proposal
@@ -28,11 +28,11 @@ export default function VoteButton() {
             />
             <input
               type="text"
-              placeholder="endtime"
+              placeholder="End time"
               className="input input-bordered w-full my-4"
             />
           </div>
-          <button className="btn btn-outline btn-success my-2 btn-warning px-2">
+          <button className="btn btn-outline btn-success mb-2 mt-4 btn-warning px-2">
             CREATE
           </button>
         </form>

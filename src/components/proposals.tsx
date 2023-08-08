@@ -10,7 +10,7 @@ export default function Proposals() {
     getProposals().then((res) => {
       setProposals(res);
     });
-  });
+  },[]);
 
   return (
     <div className="mt-10">
@@ -32,6 +32,7 @@ export default function Proposals() {
               acceptCount={proposal.acceptCount}
               denyCount={proposal.denyCount}
               endTime={proposal.endTime}
+              key={index}
             />
           );
         })}
