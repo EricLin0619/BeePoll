@@ -1,6 +1,21 @@
 import { FaGithub, FaDiscord } from "react-icons/fa";
 import Countdown from "../countdown/countdown";
-export default function DetailCard() {
+import { ProposalCard } from "../../type/type";
+
+export default function DetailCard(props: ProposalCard) {
+  function calPercentage(accept: number, deny: number, _: boolean) {
+    if (_ === true) {
+      const result = roundToTwoDecimalPlaces(accept / (accept + deny)) * 100
+      return result
+    }
+    const result = roundToTwoDecimalPlaces(deny / (accept + deny)) * 100
+    return result
+  }
+
+  function roundToTwoDecimalPlaces(num: number): number {
+    return Number(Number(num.toFixed(3)).toFixed(2));
+  }
+
   return (
     <div className="card dark:text-white dark:bg-slate-800 dark:border-white dark:border-solid dark:border-2 p-4 w-3/5 h-auto bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] text-[#2E1503] ">
       <div className="card-body">
@@ -9,9 +24,7 @@ export default function DetailCard() {
           <div>
             <p className="font-bold mb-3">DESCRIPTION</p>
             <p>
-              We are using cookies for no reason. We are using cookies for no
-              reason.We are using cookies for no reason.We are using cookies for
-              no reason.
+              {props.proposalBody}
             </p>
           </div>
           <div>
@@ -23,7 +36,7 @@ export default function DetailCard() {
                 alt="creeper"
               />
               <span className="dark:bg-slate-900 dark:text-white bg-[#f9e547] text-[#65676a] font-bold rounded-r-lg pt-1 px-2 h-8">
-                0xf73a…3249{" "}
+                {props.creater}
               </span>
             </div>
           </div>
@@ -33,19 +46,19 @@ export default function DetailCard() {
             <p className="font-bold mb-3">VOTES</p>
             <div className="flex items-center">
               <div className=" rounded-full bg-success w-2 h-2 mr-2"></div>
-              <span className="mr-4">Yes 60%</span>
+              <span className="mr-4">{`Yes ${calPercentage(props.acceptCount, props.denyCount, true)}%`}</span>
               <progress
                 className="progress progress-success w-56 dark:bg-slate-950"
-                value={60}
+                value={calPercentage(props.acceptCount, props.denyCount, true)}
                 max="100"
               ></progress>
             </div>
             <div className="flex items-center">
               <div className=" rounded-full bg-error w-2 h-2 mr-2"></div>
-              <span className="mr-4">No 40%</span>
+              <span className="mr-4">{`No ${calPercentage(props.acceptCount, props.denyCount, false)}%`}</span>
               <progress
                 className="progress progress-error w-56 dark:bg-slate-950"
-                value={40}
+                value={calPercentage(props.acceptCount, props.denyCount, false)}
                 max="100"
               ></progress>
             </div>

@@ -28,6 +28,7 @@ export const issueVc = async (did: any, user: any, webAuthnId: any) => {
     };
     try {
         const response = await axios.post(url, requestBody, { headers })
+        console.log("VC is here", response.data)
         return response.data.credentialStatus.claim.id
     }
     catch (error) {
