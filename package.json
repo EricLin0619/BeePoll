@@ -20,6 +20,7 @@
     "alchemy-sdk": "^2.8.3",
     "axios": "^1.4.0",
     "connectkit": "^1.2.2",
+    "dayjs": "^1.11.9",
     "ethers": "^5.7.0",
     "graphql": "^16.7.1",
     "graz": "^0.0.44",
