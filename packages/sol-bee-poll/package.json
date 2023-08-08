@@ -6,6 +6,7 @@
   "scripts": {
     "compile": "hardhat compile",
     "deploy": "hardhat deploy:beepoll --network goerli --verify",
+    "deploy:zk": "hardhat deploy:himitsu --network goerli --verify",
     "circom": "hardhat circom --deterministic --debug --verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

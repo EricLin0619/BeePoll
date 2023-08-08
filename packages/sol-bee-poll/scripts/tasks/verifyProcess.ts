@@ -24,9 +24,12 @@ task('verify:contract', 'Verify deployed contract')
     try {
       const contractAddress = fs.readFileSync(`scripts/address/${hre.network.name}/BeePoll.json`)
       const addressData = JSON.parse(contractAddress.toString())
+
+      const himitsuAddress = fs.readFileSync(`scripts/address/${hre.network.name}/HimitsuVerifier.json`)
+      const himitsuAddressData = JSON.parse(himitsuAddress.toString())
       await hre.run('verify:verify', {
         address: addressData.main,
-        constructorArguments: [],
+        constructorArguments: [himitsuAddressData],
         contract: 'contracts/BeePoll.sol:BeePoll',
       })
     } catch (e) {
