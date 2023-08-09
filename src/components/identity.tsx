@@ -1,8 +1,6 @@
 import PersonalDIDCard from "./card/personalDIDCard";
 import Github from "./card/githubCard";
-import { issueVc } from "../services/did/vc";
 import { handleDidRegistration } from "../services/did/handleDidRegirtration";
-import { addVcToDid } from "../services/did/addVcToDid";
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -10,18 +8,20 @@ import VerifyVcButton from "./button/verifyVcButton";
 import { checkDidForMatchingGithubSub, getAccessToken, resolveDid } from "../services/did/did";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import router, { useRouter } from "next/router";
+import router from "next/router";
 import { handleGetCredential } from "../services/did/handleGetCredential";
 import { useTheme } from "next-themes";
-import Link from "next/link";
+import { registerUser } from "../services/contractApi/contract";
+const { buildPoseidon } = require('circomlibjs')
 
 export default function Identity(props: any) {
   const githubUser = useUser();
   const { address, isConnected } = useAccount();
-  const [did, setDid] = useState("");
-  const [didDocument, setDidDocument] = useState<any>();
-  const [webAuthnId, setWebAuthnId] = useState("");
+  const [ did, setDid ] = useState("");
+  const [ didDocument, setDidDocument ] = useState<any>();
+  const [ webAuthnId, setWebAuthnId ] = useState("");
   const { theme } = useTheme();
+  const hexToDecimal = (hex: string) => BigInt('0x' + hex).toString()
 
   useEffect(() => {
     async function getDid() {
@@ -46,6 +46,15 @@ export default function Identity(props: any) {
   }
 
   useEffect(() => {
+    async function getVC() {
+      const res = await handleGetCredential(did, address as `0x${string}`, githubUser)
+      const credentialHash = res.vc.credentialStatus.credentialHash
+      const poseidon = await buildPoseidon()
+      const poseidonHash = poseidon.F.toString(poseidon([hexToDecimal(credentialHash)]))
+      await registerUser(address as `0x${string}`, poseidonHash)
+      setWebAuthnId(res.webAuthnId)
+    }
+
     const githubSub = githubUser.user?.sub
     const isValid = (address != undefined && did != "" && githubSub != undefined)
     const hasService = didDocument && didDocument['service'][0] ? true : false;
@@ -59,11 +68,7 @@ export default function Identity(props: any) {
 
       if (!hasService) {
         console.log("github user ", githubUser.user?.name)
-        handleGetCredential(did, address, githubUser).then((res) => {
-          const credHash = res.vc.credentialStatus.credentialHash
-          setWebAuthnId(res.webAuthnId)
-          console.log("credential hash", credHash)
-        })
+        getVC()
       }
     }
 
@@ -94,7 +99,7 @@ export default function Identity(props: any) {
             </button>
             {/* <Link href="/api/auth/logout"> logout </Link> */}
           </div>
-          <ToastContainer />
+          <ToastContainer/>
         </div>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 my-[0px]"></div>

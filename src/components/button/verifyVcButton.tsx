@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { registerUser } from "../../services/contractApi/contract";
-import { useAccount } from "wagmi";
 import { onGet } from "../../services/did/webAuthnUtils";
-const { buildPoseidon } = require('circomlibjs')
 
 export default function VerifyVcButton(props: any) {
   const [vc, setVc] = useState("");
-  const hexToDecimal = (hex: string) => BigInt('0x' + hex).toString()
-  const { address } = useAccount();
   const handleButtonClick = async () => {
     const localWebAuthnId = await onGet()
     console.log("localWebAuthnId", localWebAuthnId)
@@ -22,8 +17,6 @@ export default function VerifyVcButton(props: any) {
     const data = JSON.parse(vc);
     const inputs = data.credentialStatus.credentialHash
     props.setCredentialHash(inputs);
-    // const poseidonHash = poseidon.F.toString(poseidon([hexToDecimal(inputs)]))
-    // await registerUser(address as `0x${string}`, poseidonHash)
   }
 
   return (
