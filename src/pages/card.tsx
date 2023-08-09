@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 export default function Page() {
   const router = useRouter();
-  const { proposalId, proposalBody, acceptCount, denyCount, creater, endTime } = router.query as any;
+  const { proposalId, proposalBody, acceptCount, denyCount, creater, endTime, credentialHash } = router.query as any;
 
   return (
     <div className="flex justify-center my-10 dark:bg-slate-800">
@@ -16,7 +16,9 @@ export default function Page() {
       proposalBody={proposalBody}
       acceptCount={acceptCount}
       denyCount={denyCount}
-      endTime={endTime}/>
+      endTime={endTime}
+      credentialHash={credentialHash}
+      />
       <div>
         <YesCard />
         <NoCard />
