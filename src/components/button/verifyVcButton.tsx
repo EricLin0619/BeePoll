@@ -1,7 +1,8 @@
-import { onGet } from "../../services/webAuthnUtils";
+import { useState } from "react";
+import { onGet } from "../../services/did/webAuthnUtils";
 
-export default function VerifyVcButton() {
-
+export default function VerifyVcButton(props: any) {
+  const [vc, setVc] = useState("");
   const handleButtonClick = async () => {
     const localWebAuthnId = await onGet()
     console.log("localWebAuthnId", localWebAuthnId)
@@ -12,6 +13,11 @@ export default function VerifyVcButton() {
     }
   }
 
+  function handleVerify() {
+    const data = JSON.parse(vc);
+    props.setCredentialHash(data.credentialStatus.credentialHash);
+  }
+  
   return (
     <div>
       <button className="btn btn-outline px-2 btn-info" onClick={() => {
@@ -23,9 +29,9 @@ export default function VerifyVcButton() {
             Please input your VC data
           </h3>
           <div className="mt-5 mb-6 h-full">
-            <textarea className="textarea textarea-bordered h-full w-full" placeholder="Your VC"></textarea>
+            <textarea className="textarea textarea-bordered h-full w-full" placeholder="Your VC" onChange={(e)=>{setVc(e.target.value)}}></textarea>
           </div>
-          <button className="btn btn-outline btn-success btn-info px-2">Verify</button>
+          <button className="btn btn-outline btn-success btn-info px-2" onClick={handleVerify}>Verify</button>
         </form>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

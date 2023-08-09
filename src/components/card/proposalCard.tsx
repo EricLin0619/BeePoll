@@ -12,20 +12,24 @@ export default function ProposalCard(props: ProposalCard) {
       query: { 
         proposalId: props.proposalId,
         proposalBody: props.proposalBody,
-        acceptCount: props.acceptCount,
-        denyCount: props.denyCount,
+        acceptCount: props.acceptCount as any,
+        denyCount: props.denyCount as any,
         creater: props.creater,
         endTime: props.endTime,
       }
     });
   }
 
-  function calPercentage(accept: number, deny: number, _: boolean) {
+  function calPercentage(_: boolean) {
     if (_ === true) {
-      const result = roundToTwoDecimalPlaces(accept / (accept + deny)) * 100
+      if (props.denyCount._hex === "0x00" || null) return 100
+      if (props.acceptCount._hex === "0x00" || null) return 0
+      const result = roundToTwoDecimalPlaces(props.acceptCount / (props.acceptCount + props.denyCount)) * 100
       return result
     }
-    const result = roundToTwoDecimalPlaces(deny / (accept + deny)) * 100
+    if (props.acceptCount._hex === "0x00" || undefined) return 100
+    if (props.denyCount._hex === "0x00" || undefined) return 0
+    const result = roundToTwoDecimalPlaces(props.denyCount / (props.acceptCount + props.denyCount)) * 100
     return result
   }
 
@@ -34,12 +38,12 @@ export default function ProposalCard(props: ProposalCard) {
   }
 
   function handleAccept(e: any) {
-    vote(props.proposalId, true)
+    // vote(props.proposalId, true)
     e.stopPropagation();
   }
 
   function handleDeny(e: any) {
-    vote(props.proposalId, false)
+    // vote(props.proposalId, false)
     e.stopPropagation();
   }
 
@@ -58,20 +62,20 @@ export default function ProposalCard(props: ProposalCard) {
         </p>
         <div className="flex justify-between">
           <p className="text-xs text-left font-bold">Yes</p>
-          <p className="text-xs text-right font-bold">{`${calPercentage(props.acceptCount, props.denyCount, true)}%`}</p>
+          <p className="text-xs text-right font-bold">{`${calPercentage(true)}%`}</p>
         </div>
         <progress
           className="progress progress-success w-auto dark:bg-slate-950"
-          value={calPercentage(props.acceptCount, props.denyCount, true)}
+          value={calPercentage(true)}
           max="100"
         ></progress>
         <div className="flex justify-between">
           <p className="text-xs text-left font-bold">No</p>
-          <p className="text-xs text-right font-bold">{`${calPercentage(props.acceptCount, props.denyCount, false)}%`}</p>
+          <p className="text-xs text-right font-bold">{`${calPercentage(false)}%`}</p>
         </div>
         <progress
           className="progress progress-error w-auto dark:bg-slate-950 text-[#FF5E6C]"
-          value={calPercentage(props.acceptCount, props.denyCount, false)}
+          value={calPercentage(false)}
           max="100"
         ></progress>
         <div className="flex justify-between mt-4">

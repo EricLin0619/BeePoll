@@ -15,8 +15,8 @@ export type receivedDatasEvent = {
 export type ProposalCard = {
   proposalId: number,
   proposalBody: string,
-  acceptCount: number,
-  denyCount: number,
+  acceptCount: any,
+  denyCount: any,
   creater: string,
   endTime: number,
 }
