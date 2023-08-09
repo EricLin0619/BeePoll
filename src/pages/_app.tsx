@@ -19,24 +19,24 @@ function App({ Component, pageProps: session, ...pageProps }: AppProps) {
       <ThemeProvider attribute="class">
         <WagmiConfig client={client}>
           <ConnectKitProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs as any} >
-            <GrazProvider>
-              <NextHead>
-                <title>BeePoll</title>
-                <link rel="icon" href="./bee.png" />
-              </NextHead>
-              <div className="min-h-screen flex flex-col dark:bg-slate-800">
-                <Navbar />
-                <Component {...pageProps}></Component>
-                <Footer />
-              </div>
-            </GrazProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs as any} >
+              <GrazProvider>
+                <NextHead>
+                  <title>BeePoll</title>
+                  <link rel="icon" href="./bee.png" />
+                </NextHead>
+                <div className="min-h-screen flex flex-col dark:bg-slate-800">
+                  <Navbar />
+                  <Component {...pageProps}></Component>
+                  <Footer />
+                </div>
+              </GrazProvider>
             </LocalizationProvider>
           </ConnectKitProvider>
         </WagmiConfig>
       </ThemeProvider>
     </UserProvider>
-    
+
   );
 }
 export default App;
