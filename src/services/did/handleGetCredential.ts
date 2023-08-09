@@ -4,8 +4,8 @@ import { issueVc } from "./vc";
 import { onCreate } from "./webAuthnUtils";
 
 export async function handleGetCredential(did: string, address: `0x${string}`, githubUser: any) {
-    const didDocument = await resolveDid(did, await getAccessToken());
-    if (didDocument?.didDocument?.service[0]?.serviceEndpoint === undefined) {
+    // const didDocument = await resolveDid(did, await getAccessToken());
+    // if (didDocument?.didDocument?.service[0]?.serviceEndpoint === undefined) {
         console.log("create vc")
         const webAuthnId = await onCreate(did);
         console.log("webAuthnId", webAuthnId)
@@ -17,6 +17,6 @@ export async function handleGetCredential(did: string, address: `0x${string}`, g
         const data = await addVcToDid(address, vcId, userSub)
         console.log(data)
         return { vc, webAuthnId }
-    }
+    // }
     return { vc: "", webAuthnId: "" }
 }

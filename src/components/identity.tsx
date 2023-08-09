@@ -45,18 +45,19 @@ export default function Identity(props: any) {
   }, [address, isConnected, did]);
 
   const handleButtonClick = async () => {
-    const hasService = didDocument && didDocument["service"][0];
-    if (hasService) {
-      toast("Credential Already Exists", {
-        hideProgressBar: true,
-        theme: theme === "dark" ? "dark" : "light",
-        autoClose: 1000,
-        toastId: "fail1",
-      })
-      return;
-    } else {
-      router.push("/api/auth/login");
-    }
+    // const hasService = didDocument && didDocument["service"][0];
+    // if (hasService) {
+    //   toast("Credential Already Exists", {
+    //     hideProgressBar: true,
+    //     theme: theme === "dark" ? "dark" : "light",
+    //     autoClose: 1000,
+    //     toastId: "fail1",
+    //   })
+    //   return;
+    // } else {
+    //   router.push("/api/auth/login");
+    // }
+    router.push("/api/auth/login");
   };
 
   useEffect(() => {
@@ -86,21 +87,22 @@ export default function Identity(props: any) {
     const hasService = didDocument && didDocument["service"][0] ? true : false;
 
     if (isValid) {
-      checkDidForMatchingGithubSub(did, githubSub).then((checkResult) => {
-        if (checkResult) {
-          toast("GitHub Account Already Associated with Another DID", {
-            hideProgressBar: true,
-            theme: theme === "dark" ? "dark" : "light",
-            autoClose: 1000,
-            toastId: "fail1",
-          });
-        }
-      });
+      // checkDidForMatchingGithubSub(did, githubSub).then((checkResult) => {
+      //   if (checkResult) {
+      //     toast("GitHub Account Already Associated with Another DID", {
+      //       hideProgressBar: true,
+      //       theme: theme === "dark" ? "dark" : "light",
+      //       autoClose: 1000,
+      //       toastId: "fail1",
+      //     });
+      //   }
+      // });
 
-      if (!hasService) {
-        console.log("github user ", githubUser.user?.name);
-        getVC();
-      }
+      // if (!hasService) {
+      //   console.log("github user ", githubUser.user?.name);
+      //   getVC();
+      // }
+      getVC()
     }
   }, [handleButtonClick, theme]);
 
