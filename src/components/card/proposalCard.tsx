@@ -22,11 +22,13 @@ export default function ProposalCard(props: ProposalCard) {
 
   function calPercentage(_: boolean) {
     if (_ === true) {
-      if (props.denyCount._hex === "0x00" || null) return 100
+      if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00") return 0
+      if (props.denyCount._hex === "0x00") return 100
       if (props.acceptCount._hex === "0x00" || null) return 0
       const result = roundToTwoDecimalPlaces(props.acceptCount / (props.acceptCount + props.denyCount)) * 100
       return result
     }
+    if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00") return 0
     if (props.acceptCount._hex === "0x00" || undefined) return 100
     if (props.denyCount._hex === "0x00" || undefined) return 0
     const result = roundToTwoDecimalPlaces(props.denyCount / (props.acceptCount + props.denyCount)) * 100
@@ -38,12 +40,12 @@ export default function ProposalCard(props: ProposalCard) {
   }
 
   function handleAccept(e: any) {
-    // vote(props.proposalId, true)
+    vote(props.credentialHash, props.proposalId, true, )
     e.stopPropagation();
   }
 
   function handleDeny(e: any) {
-    // vote(props.proposalId, false)
+    vote(props.credentialHash, props.proposalId, false)
     e.stopPropagation();
   }
 
