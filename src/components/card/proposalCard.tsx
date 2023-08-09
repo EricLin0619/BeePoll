@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { vote } from "../../services/contractApi/contract";
 import SmallCountdown from "../countdown/smallCountdown";
 import { ProposalCard } from "../../type/type"
+import { useEffect } from "react";
+import dayjs from "dayjs";
 
 export default function ProposalCard(props: ProposalCard) {
 
@@ -57,7 +59,8 @@ export default function ProposalCard(props: ProposalCard) {
       <div className="card-body">
         <div className="flex items-center mb-2">
           <h2 className="card-title">{`VOTE # ${props.proposalId+1}`}</h2>
-          <SmallCountdown />
+          {Date.now().valueOf()>new Date(dayjs.unix(props.endTime).format("MM/DD/YYYY HH:mm:ss")).valueOf() ? "end" : <SmallCountdown endTime={props.endTime.toString()}/>}
+          {/* <SmallCountdown endTime={props.endTime.toString()}/> */}
         </div>
         <p className="text-left mb-4">
           {props.proposalBody}

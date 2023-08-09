@@ -10,7 +10,6 @@ export const issueVc = async (did: any, user: any, webAuthnId: any) => {
         'Content-Type': 'application/json',
     };
 
-
     const requestBody = {
         schemaId: 'sch:hid:testnet:z2dNytfsbHiAnnx6JmC6V1T5y1sF2XXkpKAaHjAao587N:1.0',
         subjectDid: did,
