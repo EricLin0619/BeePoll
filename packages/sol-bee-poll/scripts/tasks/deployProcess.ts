@@ -31,10 +31,15 @@ task('deploy:beepoll', 'Deploy contract')
 
     const contractAddress = fs.readFileSync(`scripts/address/${hre.network.name}/HimitsuVerifier.json`)
     const himitsuAddress = JSON.parse(contractAddress.toString())
-    
+
+    const feeData = await hre.ethers.provider.getFeeData()
     const contractFactory = await hre.ethers.getContractFactory('contracts/BeePoll.sol:BeePoll')
     // if you mint in constructor, you need to add value in deploy function
-    const deployContract = await contractFactory.connect(signer).deploy(himitsuAddress.main)
+    const deployContract = await contractFactory.connect(signer).deploy(himitsuAddress.main, {
+      maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+      maxFeePerGas: feeData.maxFeePerGas,
+      gasLimit: 4000000,
+    })
     console.log(`BeePoll.sol deployed to ${deployContract.address}`)
 
     const address = {
@@ -68,7 +73,12 @@ task('deploy:beepoll', 'Deploy contract')
     const [signer] = await hre.ethers.getSigners()
     const contractFactory = await hre.ethers.getContractFactory('contracts/HimitsuVerifier.sol:Verifier')
     // if you mint in constructor, you need to add value in deploy function
-    const deployContract = await contractFactory.connect(signer).deploy()
+    const feeData = await hre.ethers.provider.getFeeData()
+    const deployContract = await contractFactory.connect(signer).deploy({
+      maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+      maxFeePerGas: feeData.maxFeePerGas,
+      gasLimit: 4000000,
+    })
     console.log(`HimitsuVerifier.sol deployed to ${deployContract.address}`)
 
     const address = {
