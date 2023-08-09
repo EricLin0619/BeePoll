@@ -16,8 +16,8 @@ export default function VoteButton() {
       >
         New Vote
       </button>
-      <dialog id="my_modal_3" className="modal">
-        <form method="dialog" className="modal-box p-8 relative">
+      <dialog id="my_modal_3" className="modal z-0" >
+        <form method="dialog" className="modal-box p-8">
           <h3 className="font-bold text-lg text-white">
             Create your proposal
           </h3>
@@ -32,10 +32,9 @@ export default function VoteButton() {
               placeholder="End time"
               className="input input-bordered w-full my-4"
             />
-            {/* <DatePicker label="Basic date picker" />
-            <DateTimePicker label="Basic date time picker" className="absolute text-white"/> */}
+            <DateTimePicker label="Basic date time picker" className="z-50 text-white"/>
           </div>
-          <button className="btn btn-outline btn-success mb-2 mt-4 btn-warning px-2">
+          <button className="btn btn-outline btn-success mb-2 mt-4 btn-warning px-2" onClick={()=>{createProposal("bad", 120)}}>
             CREATE
           </button>
         </form>

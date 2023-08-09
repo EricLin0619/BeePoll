@@ -76,7 +76,7 @@ export default function Identity(props: any) {
           IDENTITY
         </p>
         <div className="flex space-x-4 ml-auto">
-          <VerifyVcButton />
+          <VerifyVcButton setCredentialHash={props.setCredentialHash}/>
           <div className="tooltip" data-tip={did === "" ? "Connect Wallet Before Getting Credential" : null}>
             <button
               className={"btn btn-outline px-2 h-1/3 btn-warning"}
