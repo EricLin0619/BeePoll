@@ -19,4 +19,5 @@ export type ProposalCard = {
   denyCount: any,
   creater: string,
   endTime: number,
+  credentialHash: string
 }

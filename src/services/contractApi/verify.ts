@@ -33,33 +33,26 @@ const hexToDecimal = (hex: string) => BigInt('0x' + hex).toString()
 
 export async function zkproof(credentialHash: string) {
   // generate VC hash
-  const WASM_FILE_PATH = 'circuits/himitsu.wasm'
-  const ZKEY_FILE_PATH = 'circuits/himitsu.zkey'
+  const filePathWASM: string = '/himitsu.wasm'
+  const filePathZKEY: string = '/himitsu.zkey'
   
   // issuer send this hash
   const poseidon = await buildPoseidon()
   const inputs = credentialHash
   const poseidonHash = poseidon.F.toString(poseidon([hexToDecimal(inputs)]))
-  console.log('poseidon hash:', poseidonHash)
+  // console.log('poseidon hash:', poseidonHash)
   
   const circuitInputs = {
     value: `0x${inputs}`,
     hash: poseidonHash,
   }
+  console.log(circuitInputs)
 
   const proofData = await generateProof(
     circuitInputs,
-    WASM_FILE_PATH,
-    ZKEY_FILE_PATH
+    filePathWASM,
+    filePathZKEY
   )
+  console.log(proofData)
   return proofData
-  // console.log(`['${proofData.a[0]._hex}', '${proofData.a[1]._hex}']`)
-  // console.log(`[['${proofData.b[0][0]._hex}', '${proofData.b[0][1]._hex}'],['${proofData.b[1][0]._hex}', '${proofData.b[1][1]._hex}']]`)
-  // console.log(`['${proofData.c[0]._hex}', '${proofData.c[1]._hex}']`)
-  // console.log(`['${proofData.inputs[0]._hex}']`)
 }
-
-// main().catch((error) => {
-//   console.error(error)
-//   process.exitCode = 1
-// })

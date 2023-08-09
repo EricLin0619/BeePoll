@@ -18,10 +18,8 @@ const hexToDecimal = (hex: string) => BigInt('0x' + hex).toString()
 
 export async function registerUser(
   userAddress: string,
-  credentialHash: string
+  poseidonHash: string
 ) {
-  const poseidon = await buildPoseidon();
-  const poseidonHash = poseidon.F.toString(poseidon([hexToDecimal(credentialHash)]));
   const data = contract.registerUser(userAddress, poseidonHash);
 }
 
@@ -32,7 +30,7 @@ export async function vote(credentialHash: string, proposalId: number, accept: b
       address: contractAddress,
       abi: ABI,
       chainId: goerliId,
-      functionName: "vote(uint256,bool,[uint256[2],uint256[2][2],uint256[2]])",
+      functionName: "vote",
       args: [proposalId, accept, proof],
     });
     await writeContract(config);
