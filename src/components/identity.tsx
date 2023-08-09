@@ -20,6 +20,7 @@ export default function Identity(props: any) {
   const { address, isConnected } = useAccount();
   const [did, setDid] = useState("");
   const [didDocument, setDidDocument] = useState<any>();
+  const [webAuthnId, setWebAuthnId] = useState("");
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -58,7 +59,11 @@ export default function Identity(props: any) {
 
       if (!hasService) {
         console.log("github user ", githubUser.user?.name)
-        handleGetCredential(did, address, githubUser);
+        handleGetCredential(did, address, githubUser).then((res) => {
+          const credHash = res.vc.credentialStatus.credentialHash
+          setWebAuthnId(res.webAuthnId)
+          console.log("credential hash", credHash)
+        })
       }
     }
 

@@ -9,7 +9,7 @@ export const onCreate = async (did: string) => {
             rp: {
                 name: "next-webauthn",
                 // TODO: Change
-                id: "bee-poll.vercel.app",//"ericlin0619.github.io",
+                id: "bee-poll.vercel.app",//"bee-poll.vercel.app",//"ericlin0619.github.io",
             },
             user: {
                 id: window.crypto.randomUUID(),
@@ -30,18 +30,17 @@ export const onCreate = async (did: string) => {
     return credential.id;
 }
 
-export const onGet = async (event: FormEvent) => {
-    event.preventDefault();
-
+export const onGet = async () => {
     const credential = await get({
         publicKey: {
             challenge: generateChallenge(),//generateChallenge(),
             timeout: 60000,
             userVerification: "required",
-            rpId: "bee-poll.vercel.app",//"ericlin0619.github.io",
+            rpId: "bee-poll.vercel.app",//"bee-poll.vercel.app",//"ericlin0619.github.io",
         },
     });
 
     console.log("credential", JSON.stringify(credential, null, 2))
+    return credential.id;
 };
 
