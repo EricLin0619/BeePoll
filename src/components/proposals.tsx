@@ -10,7 +10,7 @@ export default function Proposals(props: any) {
     getProposals().then((res) => {
       setProposals(res);
     });
-  },[]);
+  }, []);
 
   return (
     <div className="mt-10">
@@ -18,7 +18,7 @@ export default function Proposals(props: any) {
         <p className="font-mono text-black font-bold text-3xl ml-5 mt-3 dark:text-white">
           VOTING
         </p>
-        <VoteButton/>
+        <VoteButton />
       </div>
       <div className="divider ml-5 mr-auto w-1/2 mt-0 mb-4"></div>
       <SelectBar />
