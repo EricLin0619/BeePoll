@@ -84,8 +84,8 @@ export default function Identity(props: any) {
                 opacity: did === "" ? 0.8 : 1,
                 backgroundColor: theme === "dark" ? "#1e293b" : "#fdfdfd"
               }}
-              disabled={!did
-              }
+              // disabled={!did
+              // }
               onClick={() => {
                 handleButtonClick()
               }}

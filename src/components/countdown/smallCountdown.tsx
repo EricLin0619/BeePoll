@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
+import dayjs from "dayjs";
 
-export default function SmallCountdown() {
+export default function SmallCountdown(props: any) {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [mins, setMins] = useState(0);
   const [secs, setSecs] = useState(0);
 
   useEffect(() => {
-    const target = new Date("8/10/2023 20:00:00");
+    // const target = new Date("8/10/2023 20:00:00");
+
+    const target = new Date(dayjs.unix(props.endTime).format("MM/DD/YYYY HH:mm:ss"));
     const interval = setInterval(() => {
       const now = new Date();
       const difference = target.getTime() - now.getTime();
