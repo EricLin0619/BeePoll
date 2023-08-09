@@ -10,6 +10,8 @@
 ### Demo Page
 - WebPage: https://ericlin0619.github.io/BeePoll/ 
 - Video: https://youtube.com/
+- Dojima ID verifier Contract: [0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872](https://doj-bex-test.dojima.network/address/0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872#code)
+- Dojima Vote Contract: [0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19](https://doj-bex-test.dojima.network/address/0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19#code)
 
 ### Abstract
 Our project aims to revolutionize the web3 voting mechanism in DAOs by providing a secure and decentralized system. By integrating the EVM blockchain and Hypersign's DID service, we ensure verifiable identities, protection against sybil attacks, and the empowerment of voting.
@@ -36,7 +38,7 @@ sequenceDiagram
     actor User
     participant Web
     participant H as Hypersign Network
-    participant Goerli
+    participant Dojima
     participant Github
     %% Register DID and get VC
     User ->> Web: Choose the address and sign DID document
@@ -57,15 +59,15 @@ sequenceDiagram
     Web ->> H: Update DID document
     %% vp and zk proof
     User ->> Web: Issue a verifiable presentation
-    Web ->> Goerli: Generate ZK proof
-    Goerli ->> Goerli: Verify ZK proof by VC data on chain
-    Goerli ->> Web: Give vote access to User
+    Web ->> Dojima: Generate ZK proof
+    Dojima ->> Dojima: Verify ZK proof by VC data on chain
+    Dojima ->> Web: Give vote access to User
     %% voting
     User ->> Web: Choose a proposal to vote
-    Web ->> Goerli: Invoke voting smart contract
-    activate Goerli
-    Goerli -->> Web: Voting successfully
-    deactivate Goerli
+    Web ->> Dojima: Invoke voting smart contract
+    activate Dojima
+    Dojima -->> Web: Voting successfully
+    deactivate Dojima
 ```
 
 ### Build & Installation

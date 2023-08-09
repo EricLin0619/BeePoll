@@ -29,6 +29,7 @@ const chainIds = {
   'optimism-goerli': 420,
   'optimism-mainnet': 10,
   'polygon-mumbai': 80001,
+  dojima: 1001,
 }
 
 // Ensure that we have all the environment variables we need.
@@ -53,6 +54,9 @@ function getChainConfig (chain: keyof typeof chainIds): NetworkUserConfig {
       break
     case 'quorum':
       jsonRpcUrl = process.env.QUORUM_URL || ''
+      break
+    case 'dojima':
+      jsonRpcUrl = 'https://api-test.d11k.dojima.network:8545/'
       break
     default:
       jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
@@ -83,6 +87,7 @@ const config: HardhatUserConfig = {
     'optimism-goerli': getChainConfig('optimism-goerli'),
     'polygon-mainnet': getChainConfig('polygon-mainnet'),
     'polygon-mumbai': getChainConfig('polygon-mumbai'),
+    dojima: getChainConfig('dojima'),
   },
   paths: {
     artifacts: './artifacts',
@@ -134,8 +139,18 @@ const config: HardhatUserConfig = {
       polygon: process.env.POLYGONSCAN_API_KEY || '',
       optimisticGoerli: process.env.OPTIMISM_API_KEY || '',
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || '',
+      dojima: 'NO_API_KEY',
     },
+    customChains: [{
+      network: 'dojima',
+      chainId: chainIds.dojima,
+      urls: {
+        apiURL: 'https://doj-bex-test.dojima.network/api',
+        browserURL: 'https://doj-bex-test.dojima.network/',
+      },
+    }],
   },
+  
   gasReporter: {
     currency: 'USD',
     gasPrice: 100,
