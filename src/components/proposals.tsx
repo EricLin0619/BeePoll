@@ -1,10 +1,10 @@
 import ProposalCard from "./card/proposalCard";
 import SelectBar from "./selectBar";
-import { createProposal, getProposals } from "../services/vote";
+import { createProposal, getProposals, registerUser } from "../services/contractApi/contract";
 import VoteButton from "./button/voteButton";
 import { useState, useEffect } from "react";
 
-export default function Proposals() {
+export default function Proposals(props: any) {
   const [proposals, setProposals] = useState<any>([]);
   useEffect(() => {
     getProposals().then((res) => {
@@ -32,6 +32,7 @@ export default function Proposals() {
               acceptCount={proposal.acceptCount}
               denyCount={proposal.denyCount}
               endTime={proposal.endTime}
+              credentialHash={props.credentialHash}
               key={index}
             />
           );

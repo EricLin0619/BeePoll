@@ -7,6 +7,7 @@ import React from "react";
 
 function Page() {
   const [copied, setCopied] = useState(false);
+  const [credentialHash, setCredentialHash] = useState("");
   const handleCopyClick = () => {
     setCopied(true);
     setTimeout(() => {
@@ -15,11 +16,11 @@ function Page() {
   };
   const { isLoading } = useUser();
   return (
-
     <div className="relative dark:bg-slate-800">
       {copied && <CopySuccess />}
-      <Identity handleCopyClick={handleCopyClick} />
-      <Proposals />
+      <Identity handleCopyClick={handleCopyClick} setCredentialHash={setCredentialHash}/>
+      {credentialHash}
+      <Proposals credentialHash={credentialHash}/>
     </div>
   );
 }
