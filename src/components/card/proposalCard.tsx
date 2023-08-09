@@ -18,6 +18,7 @@ export default function ProposalCard(props: ProposalCard) {
         denyCount: props.denyCount as any,
         creater: props.creater,
         endTime: props.endTime,
+        credentialHash: props.credentialHash,
       }
     });
   }
