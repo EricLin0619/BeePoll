@@ -60,55 +60,30 @@ export default function Identity(props: any) {
     router.push("/api/auth/login");
   };
 
-  useEffect(() => {
-    async function getVC() {
-      const res = await handleGetCredential(
-        did,
-        address as `0x${string}`,
-        githubUser
-      );
-      const credentialHash = res.vc.credentialStatus.credentialHash;
-      setVcData(JSON.stringify(res.vc));
-      if (document) {
-        (
-          document.getElementById("my_modal_4") as HTMLFormElement
-        ).showModal();
-      }
-      const poseidon = await buildPoseidon();
-      const poseidonHash = poseidon.F.toString(
-        poseidon([hexToDecimal(credentialHash)])
-      );
-      await registerUser(address as `0x${string}`, poseidonHash);
-      setWebAuthnId(res.webAuthnId);
+  async function getVC(did: any, address: any, githubUser: any) {
+    const res = await handleGetCredential(
+      did,
+      address as `0x${string}`,
+      githubUser
+    );
+    const credentialHash = res.vc.credentialStatus.credentialHash;
+    setVcData(JSON.stringify(res.vc));
+    if (document) {
+      (
+        document.getElementById("my_modal_4") as HTMLFormElement
+      ).showModal();
     }
-
-    const githubSub = githubUser.user?.sub;
-    const isValid = address != undefined && did != "" && githubSub != undefined;
-    const hasService = didDocument && didDocument["service"][0] ? true : false;
-
-    if (isValid) {
-      // checkDidForMatchingGithubSub(did, githubSub).then((checkResult) => {
-      //   if (checkResult) {
-      //     toast("GitHub Account Already Associated with Another DID", {
-      //       hideProgressBar: true,
-      //       theme: theme === "dark" ? "dark" : "light",
-      //       autoClose: 1000,
-      //       toastId: "fail1",
-      //     });
-      //   }
-      // });
-
-      // if (!hasService) {
-      //   console.log("github user ", githubUser.user?.name);
-      //   getVC();
-      // }
-      getVC()
-    }
-  }, [handleButtonClick, theme]);
+    const poseidon = await buildPoseidon();
+    const poseidonHash = poseidon.F.toString(
+      poseidon([hexToDecimal(credentialHash)])
+    );
+    await registerUser(address as `0x${string}`, poseidonHash);
+    setWebAuthnId(res.webAuthnId);
+  }
 
   return (
     <div className="dark:bg-slate-800">
-      <RevealVcCard vcData={vcData}/>
+      <RevealVcCard vcData={vcData} />
       <div className="flex mt-10 w-1/2">
         <p className="font-mono text-black font-bold text-3xl ml-5  dark:text-white">
           IDENTITY
@@ -123,14 +98,22 @@ export default function Identity(props: any) {
           >
             <button
               className={"btn btn-outline px-2 h-1/3 btn-warning"}
-              style={{
-                opacity: did === "" ? 0.8 : 1,
-                backgroundColor: theme === "dark" ? "#1e293b" : "#fdfdfd",
-              }}
               disabled={!did
               }
               onClick={() => {
-                handleButtonClick();
+                handleButtonClick()
+              }}
+            >
+              Gihub Login
+            </button>
+
+            <button
+              className={"btn btn-outline px-2 h-1/3 btn-warning"}
+              disabled={!did
+              }
+              style={{ marginLeft: "10px" }}
+              onClick={() => {
+                getVC(did, address, githubUser)
               }}
             >
               Get Credential
