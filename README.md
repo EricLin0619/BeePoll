@@ -1,9 +1,11 @@
-<p align="center">
+<div align="center">
 <h1>BeePoll</h1>
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE) [![BuildPass](https://img.shields.io/badge/build-pass-green)](./actions)
+![logo](./public/bee.png)
 
-</p>
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE) [![BuildPass](https://img.shields.io/badge/build-pass-green)](https://github.com/EricLin0619/BeePoll/deployments)
+
+</div>
 
 > Anti-Sybil Mechanism Voting System with Hypersign DID
 
