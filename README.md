@@ -9,7 +9,7 @@
 
 ### Demo Page
 - WebPage: https://bee-poll.vercel.app/ 
-- Video: https://youtube.com/
+- Video: https://youtu.be/L2nz_1APt4k
 - Dojima ID verifier Contract: [0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872](https://doj-bex-test.dojima.network/address/0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872#code)
 - Dojima Vote Contract: [0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19](https://doj-bex-test.dojima.network/address/0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19#code)
 
@@ -98,3 +98,8 @@ npm run build
 1. Hypersign's DID Challenges: VC issue problem, only support specific service and not metion in document
 2. Signature Verify in ZK: ED25519 verify is hard in circuit, maybe need to use some commitment map or others
 3. Cross-Chain IBC support: Hypersign VC module is hard to use IBC, and not support WASM on-chain. Not very easy to leverage it with cosmos infra
+
+### Contributer
+- Frontend + HyperSign [EricLin0619](https://github.com/EricLin0619)
+- HyperSign DID and WebAuthn [musiccat1020](https://github.com/musicat1020)
+- ZK & Smart Contract [kidneyweakx](https://github.com/kidneyweakx)
