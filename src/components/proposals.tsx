@@ -1,7 +1,7 @@
 import ProposalCard from "./card/proposalCard";
 import SelectBar from "./selectBar";
 import { createProposal, getProposals, registerUser } from "../services/contractApi/contract";
-import VoteButton from "./button/voteButton";
+import CreateProposalButton from "./button/createProposalButton";
 import { useState, useEffect } from "react";
 
 export default function Proposals(props: any) {
@@ -18,7 +18,7 @@ export default function Proposals(props: any) {
         <p className="font-mono text-black font-bold text-3xl ml-5 mt-3 dark:text-white">
           VOTING
         </p>
-        <VoteButton />
+        <CreateProposalButton />
       </div>
       <div className="divider ml-5 mr-auto w-1/2 mt-0 mb-4"></div>
       <SelectBar />

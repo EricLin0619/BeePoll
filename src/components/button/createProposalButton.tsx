@@ -5,7 +5,7 @@ import { createProposal } from "../../services/contractApi/contract";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState } from 'react';
 
-export default function VoteButton() {
+export default function CreateProposalButton() {
   const [open, setOpen] = useState(false);
   const [endTime, setEndTime] = useState<number>(0);
   const [content, setContent] = useState<string>('');
@@ -27,6 +27,11 @@ export default function VoteButton() {
     setContent(event.target.value);
   };
 
+  function handleCreate(content: string, endTime: number) {
+    createProposal(content, endTime);
+    
+  }
+
 
   return (
     <div className="ml-auto">
@@ -45,11 +50,11 @@ export default function VoteButton() {
       >
         <Box >
           <form method="dialog" className="modal-box fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <h3 className="font-bold text-lg text-white">Create your proposal</h3>
+            <h3 className="font-bold text-lg text-white mb-5">Create your proposal</h3>
             <div className="mt-2">
               <DateTimePicker
                 label="End Time"
-                className="z-50 text-white"
+                className="z-50 text-white mt-5"
                 onChange={handleEndTimeChange}
                 sx={{
                   width: "100%",
@@ -74,7 +79,7 @@ export default function VoteButton() {
                 type="text"
                 placeholder="Content"
                 style={{ color: "white", borderColor: "white" }}
-                className="input input-bordered w-full my-4"
+                className="input input-bordered w-full my-4 mt-5"
                 onChange={handleContentChange}
               />
               {/* <input
@@ -85,9 +90,7 @@ export default function VoteButton() {
               <button
                 className="btn btn-outline btn-success mb-2 mt-4 btn-warning px-2"
                 onClick={() => {
-                  console.log("content", content)
-                  console.log("endTime", endTime)
-                  createProposal(content, endTime);
+                  handleCreate(content, endTime);
                 }}
               >
                 CREATE
@@ -100,7 +103,6 @@ export default function VoteButton() {
           <form method="dialog" className="modal-backdrop">
             <button>close</button>
           </form>
-
         </Box>
       </Modal>
     </div>

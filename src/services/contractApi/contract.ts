@@ -1,19 +1,23 @@
 import { writeContract, prepareWriteContract, readContract } from "@wagmi/core";
-import { ethers } from "ethers";
+import { useNetwork } from "wagmi";
+import { BytesLike, ethers } from "ethers";
 import ABI from "./ABI.json";
 import { zkproof } from "./verify";
-import { config as dotenvConfig } from 'dotenv'
-import { resolve } from 'path'
 const { buildPoseidon } = require("circomlibjs");
-dotenvConfig({ path: resolve(__dirname, '../../.env') })
 
-const contractAddress = "0xCEFbaE8c6afEdC5C5e312B34fd8993EfD076d130";
+// const addressBook: any = {
+//   "Goerli": "0xCEFbaE8c6afEdC5C5e312B34fd8993EfD076d130",
+//   "Dojima": "0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872"
+// }
+// const { chain }: any = useNetwork();
+// const contractAddress = chain !== undefined ? addressBook[chain!.name] as string: '';
+const contractAddress = "0xCEFbaE8c6afEdC5C5e312B34fd8993EfD076d130"
 const goerliId = 5;
 const provider = new ethers.providers.JsonRpcProvider(
   "https://ethereum-goerli.publicnode.com"
 );
 const signer = new ethers.Wallet(
-  process.env.PRIVATE_KEY as string,
+  process.env.NEXT_PUBLIC_PRIVATE_KEY as BytesLike,
   provider
 );
 const contract = new ethers.Contract(contractAddress, ABI, signer);

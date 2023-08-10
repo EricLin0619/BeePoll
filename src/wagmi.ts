@@ -11,7 +11,7 @@ export const makeChain = (name: string, rpc: string, id: number) => {
     nativeCurrency: {
       decimals: 18,
       name: name,
-      symbol: 'ETH',
+      symbol: 'DOJ',
     },
     rpcUrls: {
       default: {
@@ -28,7 +28,7 @@ const defaultChains: Chain[] = [
   goerli,
   polygonMumbai,
   sepolia,
-  // makeChain('Evmos', 'https://eth.bd.evmos.org:8545', 9001),
+  makeChain('dojima', 'https://api-test.d11k.dojima.network:8545/', 1001),
   // makeChain('Evmos Testnet', 'https://eth.bd.evmos.dev:8545', 9000),
 ];
 
