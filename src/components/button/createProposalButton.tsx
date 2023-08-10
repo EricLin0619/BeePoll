@@ -39,7 +39,7 @@ export default function CreateProposalButton() {
         className="btn btn-outline h-1/3 btn-warning px-2"
         onClick={handleOpen}
       >
-        New Vote
+        New Proposal
       </button>
       <Modal
         open={open}
