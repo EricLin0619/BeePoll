@@ -20,4 +20,5 @@ export type ProposalCard = {
   creater: string,
   endTime: any,
   credentialHash: string
+  status: string
 }

@@ -1,17 +1,16 @@
 import { useRouter } from "next/router";
 import { vote } from "../../services/contractApi/contract";
 import SmallCountdown from "../countdown/smallCountdown";
-import { ProposalCard } from "../../type/type"
+import { ProposalCard } from "../../type/type";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 
 export default function ProposalCard(props: ProposalCard) {
-
   const router = useRouter();
   function handleClick() {
     router.push({
-      pathname: '/card',
-      query: { 
+      pathname: "/card",
+      query: {
         proposalId: props.proposalId,
         proposalBody: props.proposalBody,
         acceptCount: props.acceptCount as any,
@@ -19,23 +18,35 @@ export default function ProposalCard(props: ProposalCard) {
         creater: props.creater,
         endTime: props.endTime,
         credentialHash: props.credentialHash,
-      }
+      },
     });
   }
 
   function calPercentage(_: boolean) {
     if (_ === true) {
-      if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00") return 0
-      if (props.denyCount._hex === "0x00") return 100
-      if (props.acceptCount._hex === "0x00" || null) return 0
-      const result = roundToTwoDecimalPlaces(props.acceptCount / (props.acceptCount + props.denyCount)) * 100
-      return result
+      if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00")
+        return 0;
+      if (props.denyCount._hex === "0x00") return 100;
+      if (props.acceptCount._hex === "0x00" || null) return 0;
+      const result = roundToTwoDecimalPlaces(
+        (Number(props.acceptCount.toString()) /
+          (Number(props.acceptCount.toString()) +
+            Number(props.denyCount.toString()))) *
+          100
+      );
+      return result;
     }
-    if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00") return 0
-    if (props.acceptCount._hex === "0x00" || undefined) return 100
-    if (props.denyCount._hex === "0x00" || undefined) return 0
-    const result = roundToTwoDecimalPlaces(props.denyCount / (props.acceptCount + props.denyCount)) * 100
-    return result
+    if (props.denyCount._hex === "0x00" && props.acceptCount._hex === "0x00")
+      return 0;
+    if (props.acceptCount._hex === "0x00" || undefined) return 100;
+    if (props.denyCount._hex === "0x00" || undefined) return 0;
+    const result = roundToTwoDecimalPlaces(
+      (Number(props.denyCount.toString()) /
+        (Number(props.acceptCount.toString()) +
+          Number(props.denyCount.toString()))) *
+        100
+    );
+    return result;
   }
 
   function roundToTwoDecimalPlaces(num: number): number {
@@ -43,12 +54,12 @@ export default function ProposalCard(props: ProposalCard) {
   }
 
   function handleAccept(e: any) {
-    vote(props.credentialHash, props.proposalId, true, )
+    vote(props.credentialHash, props.proposalId, true);
     e.stopPropagation();
   }
 
   function handleDeny(e: any) {
-    vote(props.credentialHash, props.proposalId, false)
+    vote(props.credentialHash, props.proposalId, false);
     e.stopPropagation();
   }
 
@@ -59,16 +70,19 @@ export default function ProposalCard(props: ProposalCard) {
     >
       <div className="card-body">
         <div className="flex items-center mb-2">
-          <h2 className="card-title">{`VOTE # ${props.proposalId+1}`}</h2>
-          {Date.now().valueOf()>new Date(dayjs.unix(props.endTime).format("MM/DD/YYYY HH:mm:ss")).valueOf() ? "end" : <SmallCountdown endTime={props.endTime.toString()}/>}
-          {/* <SmallCountdown endTime={props.endTime.toString()}/> */}
+          <h2 className="card-title">{`VOTE # ${props.proposalId + 1}`}</h2>
+          {props.status === "Closed" ? (
+            <span className="ml-auto">Proposal Ended</span>
+          ) : (
+            <SmallCountdown endTime={props.endTime.toString()} />
+          )}
         </div>
-        <p className="text-left mb-4">
-          {props.proposalBody}
-        </p>
+        <p className="text-left mb-4">{props.proposalBody}</p>
         <div className="flex justify-between">
           <p className="text-xs text-left font-bold">Yes</p>
-          <p className="text-xs text-right font-bold">{`${calPercentage(true)}%`}</p>
+          <p className="text-xs text-right font-bold">{`${calPercentage(
+            true
+          )}%`}</p>
         </div>
         <progress
           className="progress progress-success w-auto dark:bg-slate-950"
@@ -77,7 +91,9 @@ export default function ProposalCard(props: ProposalCard) {
         ></progress>
         <div className="flex justify-between">
           <p className="text-xs text-left font-bold">No</p>
-          <p className="text-xs text-right font-bold">{`${calPercentage(false)}%`}</p>
+          <p className="text-xs text-right font-bold">{`${calPercentage(
+            false
+          )}%`}</p>
         </div>
         <progress
           className="progress progress-error w-auto dark:bg-slate-950 text-[#FF5E6C]"
@@ -85,12 +101,37 @@ export default function ProposalCard(props: ProposalCard) {
           max="100"
         ></progress>
         <div className="flex justify-between mt-4">
-          <button className="btn btn-outline btn-success w-20 border-2" onClick={handleAccept}>
+          {props.status === "Closed" ? (
+            <>
+              <button
+            className="btn btn-outline btn-ghost w-20 border-2"
+            onClick={(e)=>{e.stopPropagation()}}
+          >
             Accept
           </button>
-          <button className="btn btn-outline btn-error w-20 border-2" onClick={handleDeny}>
+          <button
+            className="btn btn-outline btn-ghost w-20 border-2"
+            onClick={(e)=>{e.stopPropagation()}}
+          >
             Deny
           </button>
+            </>
+            ) :(
+              <>
+                <button
+            className="btn btn-outline btn-success w-20 border-2"
+            onClick={handleAccept}
+          >
+            Accept
+          </button>
+          <button
+            className="btn btn-outline btn-error w-20 border-2"
+            onClick={handleDeny}
+          >
+            Deny
+          </button>
+              </>
+            )}
         </div>
       </div>
     </div>
