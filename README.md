@@ -8,7 +8,7 @@
 > Anti-Sybil Mechanism Voting System with Hypersign DID
 
 ### Demo Page
-- WebPage: https://ericlin0619.github.io/BeePoll/ 
+- WebPage: https://bee-poll.vercel.app/ 
 - Video: https://youtube.com/
 - Dojima ID verifier Contract: [0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872](https://doj-bex-test.dojima.network/address/0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872#code)
 - Dojima Vote Contract: [0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19](https://doj-bex-test.dojima.network/address/0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19#code)
