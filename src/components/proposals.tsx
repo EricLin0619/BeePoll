@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 export default function Proposals(props: any) {
   const [proposals, setProposals] = useState<any>([]);
-  const [proposalStatus, setProposalStatus] = useState("")
+  const [proposalStatus, setProposalStatus] = useState("init")
   useEffect(() => {
     getProposals().then((res) => {
       setProposals(res);
@@ -30,7 +30,7 @@ export default function Proposals(props: any) {
           if(Date.now().valueOf() > new Date(dayjs.unix(proposal.endTime).format("MM/DD/YYYY HH:mm:ss")).valueOf()) {
             status = "Closed"
           }
-          if(proposalStatus === status || proposalStatus === "All" || proposalStatus === "Status") {   
+          if(proposalStatus === status || proposalStatus === "All" || proposalStatus === "init") {   
             return (
               <ProposalCard
                 proposalId={index}

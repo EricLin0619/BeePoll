@@ -13,11 +13,12 @@ export default function ProposalCard(props: ProposalCard) {
       query: {
         proposalId: props.proposalId,
         proposalBody: props.proposalBody,
-        acceptCount: props.acceptCount as any,
-        denyCount: props.denyCount as any,
+        acceptCount: props.acceptCount.toString(),
+        denyCount: props.denyCount.toString(),
         creater: props.creater,
-        endTime: props.endTime,
+        endTime: props.endTime.toString(),
         credentialHash: props.credentialHash,
+        status: props.status,
       },
     });
   }
