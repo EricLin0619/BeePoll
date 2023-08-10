@@ -18,7 +18,8 @@ export default function VoteButton() {
 
   const handleEndTimeChange = (event: any) => {
     const datetime = new Date(event)
-    const timestamp = datetime.getTime();
+    const currentTime = new Date();
+    const timestamp = Math.floor((datetime.getTime() - currentTime.getTime()) / 1000);
     setEndTime(timestamp);
   };
 
