@@ -83,9 +83,17 @@ export default function Identity(props: any) {
 
   return (
     <div className="dark:bg-slate-800">
+      <div className="flex mt-3">
+        <ul className="steps mx-auto">
+          <li className="step step-primary w-28">Github login</li>
+          <li className="step step-primary w-28">Get credential</li>
+          <li className="step step-primary w-28">Verify VC</li>
+          <li className="step step-primary w-28">Vote</li>
+        </ul>
+      </div>
       <RevealVcCard vcData={vcData} />
       <div className="flex mt-10 w-1/2">
-        <p className="font-mono text-black font-bold text-3xl ml-5  dark:text-white">
+        <p className="font-mono text-black font-bold text-3xl ml-5 pt-2 dark:text-white">
           IDENTITY
         </p>
         <div className="flex space-x-4 ml-auto">
@@ -124,24 +132,25 @@ export default function Identity(props: any) {
         </div>
       </div>
       <div className="divider ml-5 mr-auto w-1/2 my-[0px]"></div>
-      <div className="flex items-center mt-2">
-        <div>
-          <p className="font-mono text-black text-xl ml-5 mt-3 mb-7 dark:text-white">
-            LINKED WALLET
-          </p>
-          <PersonalDIDCard handleCopyClick={props.handleCopyClick} did={did} />
-        </div>
-        <div className="ml-7">
-          <div className="flex items-center">
-            <span className="font-mono text-black text-xl ml-1 mt-3 mb-7 dark:text-white">
-              CREDENTIALS
-            </span>
+      
+        <div className="flex items-center mt-2">
+          <div>
+            <p className="font-mono text-black text-xl ml-5 mt-3 mb-7 dark:text-white">
+              LINKED WALLET
+            </p>
+            <PersonalDIDCard handleCopyClick={props.handleCopyClick} did={did} />
           </div>
-          <div className="flex items-center">
-            <Github handleCopyClick={props.handleCopyClick} did={did} />
+          <div className="ml-7">
+            <div className="flex items-center">
+              <span className="font-mono text-black text-xl ml-1 mt-3 mb-7 dark:text-white">
+                CREDENTIALS
+              </span>
+            </div>
+            <div className="flex items-center">
+              <Github handleCopyClick={props.handleCopyClick} did={did} />
+            </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

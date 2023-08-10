@@ -10,6 +10,7 @@
 ### Demo Page
 - WebPage: https://bee-poll.vercel.app/ 
 - Video: https://youtu.be/L2nz_1APt4k
+- Goerli Vote Contract: [0xCEFbaE8c6afEdC5C5e312B34fd8993EfD076d130](https://goerli.etherscan.io/address/0xCEFbaE8c6afEdC5C5e312B34fd8993EfD076d130)
 - Dojima ID verifier Contract: [0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872](https://doj-bex-test.dojima.network/address/0x1bcD4B2C0A368a9E4a09D7ee158B88a28A7B8872#code)
 - Dojima Vote Contract: [0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19](https://doj-bex-test.dojima.network/address/0x85248A76e867d8A70b9aC93d4806f0aAb2A2DA19#code)
 
