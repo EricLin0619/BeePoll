@@ -150,7 +150,7 @@ export default function Identity(props: any) {
         </div>
         <div className="ml-7">
           <div className="flex items-center">
-            <span className="font-mono text-black text-xl ml-5 mt-3 mb-7 dark:text-white">
+            <span className="font-mono text-black text-xl ml-1 mt-3 mb-7 dark:text-white">
               CREDENTIALS
             </span>
           </div>
