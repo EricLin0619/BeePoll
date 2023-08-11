@@ -85,10 +85,10 @@ export default function Identity(props: any) {
     <div className="dark:bg-slate-800">
       <div className="flex mt-3">
         <ul className="steps mx-auto">
-          <li className="step step-primary w-28">Github login</li>
-          <li className="step step-primary w-28">Get credential</li>
-          <li className="step step-primary w-28">Verify VC</li>
-          <li className="step step-primary w-28">Vote</li>
+          <li className={githubUser ? `step step-primary w-28` : `step w-28`}>Github login</li>
+          <li className={vcData ? `step step-primary w-28` : `step w-28`}>Get credential</li>
+          <li className={props.credentialHash ? `step step-primary w-28` : `step w-28`}>Verify VC</li>
+          <li className={`step w-28`}>Vote</li>
         </ul>
       </div>
       <RevealVcCard vcData={vcData} />

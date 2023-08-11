@@ -54,8 +54,9 @@ export async function vote(credentialHash: string, proposalId: number, accept: b
       functionName: "vote",
       args: [proposalId, accept, proof],
     });
-    await writeContract(config);
-} // untest
+    const data = await writeContract(config);
+    console.log(data)
+} 
 
 export async function createProposal(name: string, endTime: number) {
   const {chain} = getNetwork();

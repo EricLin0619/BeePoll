@@ -18,7 +18,7 @@ function Page() {
   return (
     <div className="relative dark:bg-slate-800">
       {copied && <CopySuccess />}
-      <Identity handleCopyClick={handleCopyClick} setCredentialHash={setCredentialHash}/>
+      <Identity handleCopyClick={handleCopyClick} setCredentialHash={setCredentialHash} credentialHash={credentialHash}/>
       <Proposals credentialHash={credentialHash}/>
     </div>
   );
